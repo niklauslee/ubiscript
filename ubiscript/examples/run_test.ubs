@@ -1,0 +1,10 @@
+var p = new Place("ubstp://127.0.0.1:5777");
+println(p);
+run(p) {
+	var x = 10;
+	println(x);
+}
+run(p) {
+	x = x + 10;
+	println(x);
+}
