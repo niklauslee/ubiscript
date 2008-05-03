@@ -59,7 +59,7 @@ public class NativeObject extends UbiObject {
 		return obj;
 	}
 
-	private class NativeObjectFunction extends UbiFunction {
+	protected class NativeObjectFunction extends UbiFunction {
 		private NativeObject thisObject;
 		private String name;
 		public NativeObjectFunction(NativeObject thisObject, String name) {
