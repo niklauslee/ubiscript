@@ -1,9 +1,13 @@
 package org.ubiscript;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.InvocationTargetException;
 
+import org.ubiscript.NativeObject.NativeObjectFunction;
+
+@SuppressWarnings("unchecked")
 public class NativeJavaObject extends NativeObject {
 
 	private Object javaObject;
@@ -26,6 +30,21 @@ public class NativeJavaObject extends NativeObject {
 
 	public UbiObject get(String name) {
 		// TODO Field 경우는 값을 직접 리턴, Method의 경우는 super를 호출
+		if (javaObject != null) {
+			Class c = javaObject.getClass();
+			try {
+				Field f = c.getField(name);
+				return JavaObjectToUbiObject(env, f.get(javaObject));
+			} catch (SecurityException e) {
+				e.printStackTrace();
+			} catch (NoSuchFieldException e) {
+				return new NativeObjectFunction(this, name);
+			} catch (IllegalArgumentException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			}
+		}
 		return super.get(name);
 	}
 
@@ -36,7 +55,7 @@ public class NativeJavaObject extends NativeObject {
 
 	public boolean has(String name) {
 		// TODO Field, Method에 있는 경우만 true
-		return super.has(name);
+		return true;
 	}
 
 	public boolean canPut(String name) {
@@ -59,14 +78,14 @@ public class NativeJavaObject extends NativeObject {
 			paramObjects = new Object[args.length - 1];
 			paramTypes = new Class[args.length - 1];
 			for (int i = 1; i < args.length; i++) {
-				paramObjects[i - 1] = NativeJavaObject.UbiObjectToJavaObject(args[i]);
-				paramTypes[i - 1] = NativeJavaObject.UbiObjectToJavaType(args[i]);
+				paramObjects[i - 1] = UbiObjectToJavaObject(args[i]);
+				paramTypes[i - 1] = UbiObjectToJavaType(args[i]);
 			}
 		}
 		// instantiate a Java object
 		try {
 			Class javaClass = Class.forName(className);
-			Constructor ctor = NativeJavaObject.findConstructor(javaClass, paramTypes); 
+			Constructor ctor = findConstructor(javaClass, paramTypes); 
 			Object javaObject = ctor.newInstance(paramObjects);
 			ubiObject = new NativeJavaObject(
 					env.getRootScope().get(Constants.Id_JavaObject), env, javaObject);
@@ -99,6 +118,32 @@ public class NativeJavaObject extends NativeObject {
 	}
 
 	public UbiObject invoke(Environment env, Evaluator eval, String name, UbiObject[] args, UbiObject thisObject) throws UbiException {
+		Class clazz = javaObject.getClass();
+		Object[] paramObjects = new Object[0];
+		Class[] paramTypes = new Class[0];
+		// collecting parameters of constructor
+		if (args.length > 0) {
+			paramObjects = new Object[args.length];
+			paramTypes = new Class[args.length];
+			for (int i = 0; i < args.length; i++) {
+				paramObjects[i] = UbiObjectToJavaObject(args[i]);
+				paramTypes[i] = UbiObjectToJavaType(args[i]);
+			}
+		}
+		// invoke the method
+		try {
+			Method method = findMethod(clazz, name, paramTypes);
+			Object result = method.invoke(javaObject, paramObjects);
+			return JavaObjectToUbiObject(env, result);
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
 		return env.getUndefined();
 	}
 	
@@ -228,5 +273,4 @@ public class NativeJavaObject extends NativeObject {
 		}
 		throw new NoSuchMethodException();
 	}
-	
 }
