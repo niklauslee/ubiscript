@@ -1,0 +1,50 @@
+// expression 1 (primary level)
+temp;
+123;
+null;
+true;
+23.45;
+"string\nstring";
+
+// expression 2 (call level)
+asdf[3].sdf[a.id][4];
+asdf(3, false, other());
+obj.field;
+
+// expression 3 (unary level)
+-call(!false);
+-24;
+
+// expression 4 (postfix level)
+--cnt++++;
+
+// expression 5 (additive, multiplicative, relational, equality, logical and/or)
+o.m(3++, --4) + o.f * arr[4+5];
+a <= b >= c == d != e;
+!(b && c) || d;
+
+// expression 6 (assignment)
+a[3+4]=c||d;
+
+// statement 1 (block, empty, if, for, while)
+;
+{ call(); }
+if (!false) { o.call(); }
+if (3==4) { o.f1(); } else { o.f2(); }
+for (i=4;i<50;i++) { do(); }
+while (i>j) { do; }
+
+// statement 2 (var/fun decl, jump)
+var x = 3+4, y = !false;
+function myfun(a, b, c) {
+	c = a+b;
+	return c+a+b;
+	for (;;) {
+		break;
+	}
+}
+
+// statement 3 (on, ...)
+run(x) {
+	doThis();
+}

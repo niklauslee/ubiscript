@@ -1,0 +1,9 @@
+var p = new Place("ubstp://127.0.0.1:5777");
+println(p);
+run(p) {
+	var o = new JavaObject("javax.swing.JColorChooser");
+	var c = new JavaObject("java.awt.Color", 30, 50, 100);
+	var r = o.showDialog(null, "choose color...", c);
+	println(r);
+	println("done.");
+}
