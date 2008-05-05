@@ -5,8 +5,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.InvocationTargetException;
 
-import org.ubiscript.NativeObject.NativeObjectFunction;
-
 @SuppressWarnings("unchecked")
 public class NativeJavaObject extends NativeObject {
 
