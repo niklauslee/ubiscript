@@ -1,5 +1,0 @@
-USED LIBRARY
-============
-1. ANTLR 3.0 (http://www.antlr.org)
-1. XMLBeans 2.3.0 (http://xmlbeans.apache.org/)
-2. jawin 2.0-alpha (http://jawinproject.sourceforge.net/)
