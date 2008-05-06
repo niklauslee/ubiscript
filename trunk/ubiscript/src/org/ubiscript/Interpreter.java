@@ -33,5 +33,13 @@ public class Interpreter {
 	public Environment getEnv() {
 		return env;
 	}
+	
+	public void setEvaluatorDelegate(EvaluatorDelegate delegate) {
+		evaluator.setEvaluatorDelegate(delegate);
+	}
+	
+	public EvaluatorDelegate getEvaluatorDelegate() {
+		return evaluator.getEvaluatorDelegate();
+	}
 
 }

@@ -114,8 +114,6 @@ public class Evaluator {
 	public UbiObject evaluateExpression(Environment env, Tree t) throws UbiException {
 		currentNode = t;
 		UbiObject o1, o2;
-		UbiNumber n1, n2;
-		UbiBoolean b1, b2;
 		UbiObject[] args;
 		Tree t1, t2, t3;
 		switch (t.getType()) {
@@ -294,7 +292,6 @@ public class Evaluator {
 	public void evaluateStatement(Environment env, Tree t) throws UbiException {
 		currentNode = t;
 		UbiObject o1;
-		UbiBoolean b1;
 		String id;
 		Tree t1, t2, t3, t4;
 		switch (t.getType()) {
