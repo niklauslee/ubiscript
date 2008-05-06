@@ -4,10 +4,12 @@ public class NativePlace extends NativeObject {
 
 	private static final String DEFAULT_LOCATION = "http://127.0.0.1/";
 	private String location;
+	private String placeId;
 	
 	public NativePlace(UbiObject prototype, Environment env, String location) {
 		super(prototype, env);
 		this.location = location;
+		this.placeId = java.util.UUID.randomUUID().toString();
 	}
 
 	public static void init(Environment env) {
@@ -21,8 +23,12 @@ public class NativePlace extends NativeObject {
 		return location;
 	}
 	
+	public String getPlaceId() {
+		return placeId;
+	}
+	
 	public String toString() {
-		return location;
+		return "<PLACE:" + location + "#" + placeId + ">";
 	}
 	
 	public UbiObject construct(Environment env, Evaluator eval, UbiObject[] args) throws UbiException {

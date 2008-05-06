@@ -16,24 +16,7 @@ public class Environment {
 	public Environment() throws UbiException {
 		initialize();
 	}
-	public UbiObject getCurrentScope() {
-		return currentScope;
-	}
-	public UbiObject getRootScope() {
-		return rootScope;
-	}
-	public void setRootScope(UbiObject obj) {
-		rootScope = obj;
-	}
-	public void pushScope(UbiObject scope) {
-		scope.setParentScope(currentScope);
-		currentScope = scope;
-	}
-	public void popScope() {
-		if (currentScope.getParentScope() != null) {
-			currentScope = currentScope.getParentScope();
-		}
-	}
+
 	private void initialize() throws UbiException {
 		// native objects
 		NativeGlobal.init(this);
@@ -46,6 +29,33 @@ public class Environment {
 		NativePlace.init(this);
 		NativeJavaObject.init(this);
 		currentScope = rootScope;
+	}
+
+	public UbiObject getCurrentScope() {
+		return currentScope;
+	}
+
+	public UbiObject getRootScope() {
+		return rootScope;
+	}
+
+	public void setRootScope(UbiObject obj) {
+		rootScope = obj;
+	}
+
+	public void pushScope() {
+		pushScope(newActivation());
+	}
+	
+	public void pushScope(UbiObject scope) {
+		scope.setParentScope(currentScope);
+		currentScope = scope;
+	}
+
+	public void popScope() {
+		if (currentScope.getParentScope() != null) {
+			currentScope = currentScope.getParentScope();
+		}
 	}
 	
 	public UbiObject newObject() {
