@@ -46,7 +46,7 @@ public class Evaluator {
 			if (base == null)
 				UbiError.throwReferenceError(
 						currentNode.getLine(), currentNode.getCharPositionInLine(), ref);
-			if (ref.getNameOrIndex() == UbiAbstractRef.REF_BY_NAME)
+			if (ref.getNameOrIndex() == UbiRef.REF_BY_NAME)
 				return getValue(base.get(ref.getName()));
 			else
 				return getValue(base.get(ref.getIndex()));
@@ -69,7 +69,7 @@ public class Evaluator {
 			if (o == null)
 				UbiError.throwReferenceError(
 						currentNode.getLine(), currentNode.getCharPositionInLine(), r);
-			if (r.getNameOrIndex() == UbiAbstractRef.REF_BY_NAME)
+			if (r.getNameOrIndex() == UbiRef.REF_BY_NAME)
 				o.put(r.getName(), value, Property.EMPTY);
 			else
 				o.put(r.getIndex(), value, Property.EMPTY);
