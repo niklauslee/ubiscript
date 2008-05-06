@@ -29,6 +29,7 @@ public class ActionServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		String action = req.getParameter(Param_action);
+		
 		if (action != null) {
 			if (action.equals(Action_exec)) {
 				executeAction(req, resp);
@@ -53,9 +54,9 @@ public class ActionServlet extends HttpServlet {
 		String freeVars = req.getParameter(Param_freeVars);
 		// freeVars = <url, id, referenceId>*
 		String code = req.getParameter(Param_code);
-		Interpreter interp = new Interpreter();
+		InterpreterWrapper interp = new InterpreterWrapper("localhost");
 		try {
-			interp.execute(code);
+			interp.getInterpreter().execute(code);
 		} catch (UbiException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
