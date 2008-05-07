@@ -2,6 +2,7 @@ package org.ubiscript.server;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -21,10 +22,28 @@ public class ActionServlet extends HttpServlet {
 		return manager;
 	}
 	
+	private String getLocalHost() {
+		try {
+			InetAddress address = InetAddress.getLocalHost();
+			String host = address.getHostAddress();
+			return host;
+		} catch(Exception e) {
+			return null;
+		}
+	}
+	
+	// TODO 자기 자신의 URL을 생성하는 것 보다는 web.xml의 설정 부분에 입력해주는 편이 좋지 않을지 검토 요망.
+	private String getCurrentLocation(HttpServletRequest req) {
+		
+		String location = req.getScheme() + "://" + 
+				getLocalHost() + ":" +	req.getServerPort() + 
+				req.getContextPath() + req.getServletPath();
+		return location;
+	}
+	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		String location = req.getScheme() + "://" + req.getLocalAddr() + ":" +
-				req.getLocalPort() + req.getContextPath() + req.getServletPath();
+		String location = getCurrentLocation(req);
 		PlaceManager placeManager = getPlaceManager(location);
 		String action = req.getParameter(UbiscriptHttpClient.Param_action);
 		String placeId = req.getParameter(UbiscriptHttpClient.Param_placeId);
