@@ -23,8 +23,8 @@ public class ActionServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		String location = req.getScheme() + "://" + req.getServerName() + ":" +
-				req.getServerPort() + req.getContextPath() + req.getServletPath();
+		String location = req.getScheme() + "://" + req.getLocalAddr() + ":" +
+				req.getLocalPort() + req.getContextPath() + req.getServletPath();
 		PlaceManager placeManager = getPlaceManager(location);
 		String action = req.getParameter(UbiscriptHttpClient.Param_action);
 		String placeId = req.getParameter(UbiscriptHttpClient.Param_placeId);
