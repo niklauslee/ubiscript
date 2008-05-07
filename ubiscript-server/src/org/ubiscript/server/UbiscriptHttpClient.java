@@ -27,8 +27,8 @@ public class UbiscriptHttpClient {
 		client = new HttpClient();
 	}
 	
-	public void execute(String url, String placeId, String encodedVars, String code) {
-		PostMethod post = new PostMethod(url);
+	public String execute(String location, String placeId, String encodedVars, String code) {
+		PostMethod post = new PostMethod(location);
 		post.addParameter(Param_action, Action_exec);
 		post.addParameter(Param_placeId, placeId);
 		post.addParameter(Param_freeVars, encodedVars);
@@ -41,18 +41,40 @@ public class UbiscriptHttpClient {
 			}
 			
 			String response = post.getResponseBodyAsString();
-			System.out.println("response: " + response);
-			
+			return response;
 		} catch (HttpException e) {
 			e.printStackTrace();
+			return e.getLocalizedMessage();
 		} catch (IOException e) {
 			e.printStackTrace();
+			return e.getLocalizedMessage();
 		} finally {
 			post.releaseConnection();
 		}
 	}
 	
-	public void get(String url) {
-		
+	public String get(String location, String placeId, String refId) {
+		PostMethod post = new PostMethod(location);
+		post.addParameter(Param_action, Action_get);
+		post.addParameter(Param_placeId, placeId);
+		post.addParameter(Param_refId, refId);
+		try {
+			int statusCode = client.executeMethod(post);
+			
+			if (statusCode != HttpStatus.SC_OK) {
+				System.out.println("http error.");
+			}
+			
+			String response = post.getResponseBodyAsString();
+			return response;
+		} catch (HttpException e) {
+			e.printStackTrace();
+			return e.getLocalizedMessage();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return e.getLocalizedMessage();
+		} finally {
+			post.releaseConnection();
+		}
 	}
 }

@@ -11,11 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 public class ActionServlet extends HttpServlet {
 	
-	private PlaceManager getPlaceManager(String url) {
+	private PlaceManager getPlaceManager(String location) {
 		ServletContext context = getServletContext();
 		PlaceManager manager = (PlaceManager) context.getAttribute("PlaceManager");
 		if (manager == null) {
-			manager = new PlaceManager(url);
+			manager = new PlaceManager(location);
 			context.setAttribute("PlaceManager", manager);
 		}
 		return manager;
@@ -23,55 +23,37 @@ public class ActionServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		String url = req.getScheme() + "://" + req.getServerName() + ":" +
+		String location = req.getScheme() + "://" + req.getServerName() + ":" +
 				req.getServerPort() + req.getContextPath() + req.getServletPath();
-		PlaceManager placeManager = getPlaceManager(url);
+		PlaceManager placeManager = getPlaceManager(location);
 		String action = req.getParameter(UbiscriptHttpClient.Param_action);
 		String placeId = req.getParameter(UbiscriptHttpClient.Param_placeId);
+		if ((placeId == null) || (placeId.trim().equals("")))
+			placeId = java.util.UUID.randomUUID().toString();
 		Place place = placeManager.getPlace(placeId);
+		PrintWriter out = resp.getWriter();
 		if (action != null) {
 			if (action.equals(UbiscriptHttpClient.Action_exec)) {
-				executeAction(place, req, resp);
+				String freeVars = req.getParameter(UbiscriptHttpClient.Param_freeVars);
+				String code = req.getParameter(UbiscriptHttpClient.Param_code);
+				String result = place.execute(freeVars, code);
+				out.print(result);
 			} else if (action.equals(UbiscriptHttpClient.Action_get)) {
-				getAction(place, req, resp);
+				String refId = req.getParameter(UbiscriptHttpClient.Param_refId);
+				String result = place.get(refId);
+				out.print(result);
 			} else if (action.equals(UbiscriptHttpClient.Action_put)) {
-				putAction(place, req, resp);
+				String refId = req.getParameter(UbiscriptHttpClient.Param_refId);
+				String value = req.getParameter(UbiscriptHttpClient.Param_value);
 			} else if (action.equals(UbiscriptHttpClient.Action_call)) {
-				callAction(place, req, resp);
+				String refId = req.getParameter(UbiscriptHttpClient.Param_refId);
+				String args = req.getParameter(UbiscriptHttpClient.Param_args);
 			} else {
-				PrintWriter out = resp.getWriter();
 				out.println("Unsupported Action: " + action);
 			}
 		} else {
-			PrintWriter out = resp.getWriter();
 			out.println("Action is not specified.");
 		}
 	}
 
-	private void executeAction(Place place, HttpServletRequest req, HttpServletResponse resp) {
-		String placeId = req.getParameter(UbiscriptHttpClient.Param_placeId);
-		String freeVars = req.getParameter(UbiscriptHttpClient.Param_freeVars);
-		String code = req.getParameter(UbiscriptHttpClient.Param_code);
-		place.execute(freeVars, code);
-	}
-	
-	private void getAction(Place place, HttpServletRequest req, HttpServletResponse resp) {
-		String placeId = req.getParameter(UbiscriptHttpClient.Param_placeId);
-		String refId = req.getParameter(UbiscriptHttpClient.Param_refId);
-		
-	}
-
-	private void putAction(Place place, HttpServletRequest req, HttpServletResponse resp) {
-		String placeId = req.getParameter(UbiscriptHttpClient.Param_placeId);
-		String refId = req.getParameter(UbiscriptHttpClient.Param_refId);
-		String value = req.getParameter(UbiscriptHttpClient.Param_value);
-		
-	}
-	
-	private void callAction(Place place, HttpServletRequest req, HttpServletResponse resp) {
-		String placeId = req.getParameter(UbiscriptHttpClient.Param_placeId);
-		String refId = req.getParameter(UbiscriptHttpClient.Param_refId);
-		String args = req.getParameter(UbiscriptHttpClient.Param_args);
-		
-	}
 }
