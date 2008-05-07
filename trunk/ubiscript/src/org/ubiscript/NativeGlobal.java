@@ -13,8 +13,8 @@ public class NativeGlobal extends NativeObject {
 	public static void init(Environment env) {
 		UbiObject obj = new NativeGlobal(null, env);
 		env.setRootScope(obj);
-		env.getRootScope().put(Constants.Id_global, obj, Property.CONST);
-		env.getRootScope().put(Constants.Id_undefined, env.getUndefined(), Property.CONST);
+		env.getRootScope().put(Constants.Id_global, obj, Property.PREDEFINED);
+		env.getRootScope().put(Constants.Id_undefined, env.getUndefined(), Property.PREDEFINED);
 	}
 
 	public UbiObject construct(Environment env, Evaluator eval, UbiObject[] args) throws UbiException {

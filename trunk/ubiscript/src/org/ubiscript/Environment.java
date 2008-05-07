@@ -62,60 +62,75 @@ public class Environment {
 		UbiObject o = new UbiObject(rootScope.get(Constants.Id_Object));
 		return o;
 	}
+	
 	public UbiNumber newNumber(double value) {
 		UbiNumber o = new UbiNumber(rootScope.get(Constants.Id_Number), value);
 		return o;
 	}
+	
 	public UbiBoolean newBoolean(boolean value) {
 		UbiBoolean o = new UbiBoolean(rootScope.get(Constants.Id_Boolean), value);
 		return o;
 	}
+	
 	public UbiString newString(String value) {
 		UbiString o = new UbiString(rootScope.get(Constants.Id_String), value);
 		return o;
 	}
+	
 	public UbiFunction newFunction(String[] parameters, Tree bodyTree, String bodyCode) throws UbiException {
 		UbiFunction o = new UbiFunction(rootScope.get(Constants.Id_Function), parameters, bodyTree, bodyCode);
 		UbiObject p = newObject();
 		o.put(Constants.Id_prototype, p, Property.DONTDELETE);
 		return o;
 	}
+	
 	public NativeArray newArray(int size, UbiObject[] values) {
 		NativeArray o = new NativeArray(rootScope.get(Constants.Id_Array), this, size, values); 
 		return o;
 	}
+	
+	public NativePlace newPlace(String location, String placeId) {
+		NativePlace o = new NativePlace(rootScope.get(Constants.Id_Place), this, location, placeId);
+		return o;
+	}
+	
 	public UbiReturn newReturn(UbiObject result) {
 		return new UbiReturn(result);
 	}
+	
 	public UbiBreak newBreak() {
 		return new UbiBreak();
 	}
+	
 	public UbiContinue newContinue() {
 		return new UbiContinue();
 	}
+	
 	public UbiRef newRef(UbiObject base, String name) {
 		UbiRef o = new UbiRef(base, name);
 		return o;
 	}
+	
 	public UbiRef newRef(UbiObject base, int index) {
 		UbiRef o = new UbiRef(base, index); 
 		return o;
 	}
-	public UbiNetRef newNetRef(String location, long baseId, String name) {
-		UbiNetRef o = new UbiNetRef(location, baseId, name);
+	
+	public UbiNetRef newNetRef(String location, String placeId, String refId) {
+		UbiNetRef o = new UbiNetRef(location, placeId, refId);
 		return o; 
 	}
-	public UbiNetRef newNetRef(String location, long baseId, int index) {
-		UbiNetRef o = new UbiNetRef(location, baseId, index);
-		return o; 
-	}
+	
 	public UbiActivation newActivation() {
 		UbiActivation o = new UbiActivation();
 		return o;
 	}
+	
 	public UbiNull getNull() {
 		return UbiNull.getInstance();
 	}
+	
 	public UbiUndefined getUndefined() {
 		return UbiUndefined.getInstance();
 	}
