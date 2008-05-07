@@ -3,30 +3,34 @@ package org.ubiscript;
 public class UbiNetRef extends UbiObject {
 	
 	private String location;
-	private long baseId;
+	private String placeId;
+	private String refId;
 	
-	public UbiNetRef(String location, long baseId, String name) {
+	public UbiNetRef(String location, String placeId, String refId) {
 		super(null);
 		this.location = location;
-		this.baseId = baseId;
+		this.placeId = placeId;
+		this.refId = refId;
 	}
-	
-	public UbiNetRef(String location, long baseId, int index) {
-		super(null);
-		this.location = location;
-		this.baseId = baseId;
+
+	public String getClassName() {
+		return Constants.Id_NetRef;
 	}
 	
 	public String getLocation() {
 		return location;
 	}
 	
-	public long getBaseId() {
-		return baseId;
+	public String getPlaceId() {
+		return placeId;
+	}
+	
+	public String getRefId() {
+		return refId;
 	}
 	
 	public String toString() {
-		String s = "<NETREF:" + location + ":" + baseId + ">";
+		String s = "<NETREF:" + location + "#" + placeId + ":" + refId +  ">";
 		return s;
 	}
 }

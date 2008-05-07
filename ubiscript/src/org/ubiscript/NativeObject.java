@@ -24,8 +24,8 @@ public class NativeObject extends UbiObject {
 
 	public static void init(Environment env) {
 		UbiObject obj = new NativeObject(null, env);
-		obj.put(Constants.Id_prototype, obj, Property.CONST);
-		obj.put(Constants.Id_constructor, obj, Property.CONST);
+		obj.put(Constants.Id_prototype, obj, Property.PREDEFINED);
+		obj.put(Constants.Id_constructor, obj, Property.PREDEFINED);
 		env.getRootScope().put(Constants.Id_Object, obj, Property.CONST);
 	}
 	

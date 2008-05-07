@@ -431,7 +431,9 @@ public class Evaluator {
 			String[] names = vars.toArray(new String[0]);
 			UbiObject[] values = new UbiObject[names.length];
 			for (int i = 0; i < names.length; i++) {
-				values[i] = env.getCurrentScope().lookup(names[i]);
+				UbiObject base = env.getCurrentScope().lookup(names[i]);
+				if (base != null)
+					values[i] = base.get(names[i]);
 			}
 			if (evaluatorDelegate == null)
 				UbiError.throwRuntimeError(t.getLine(), t.getCharPositionInLine(),

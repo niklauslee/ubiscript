@@ -3,29 +3,37 @@ package org.ubiscript;
 import java.util.*;
 
 public class UbiObject {
+
 	private Hashtable<String, Property> properties;
 	private UbiObject prototype;
 	private UbiObject parentScope;
+
 	public UbiObject(UbiObject prototype) {
 		properties = new Hashtable<String, Property>();
 		this.parentScope = null;
 		this.prototype = prototype;
 	}
+	
 	public String getClassName() {
 		return Constants.Id_Object;
 	}
+	
 	public void setParentScope(UbiObject scope) {
 		this.parentScope = scope;
 	}
+	
 	public UbiObject getParentScope() {
 		return parentScope;
 	}
+	
 	public void setPrototype(UbiObject prototype) {
 		this.prototype = prototype;
 	}
+	
 	public UbiObject getPrototype() {
 		return prototype;
 	}
+	
 	public UbiObject get(String name) {
 		Property prop = properties.get(name);
 		if (prop != null)
@@ -35,9 +43,11 @@ public class UbiObject {
 			return prototype.get(name);
 		return UbiUndefined.getInstance();
 	}
+	
 	public UbiObject get(int index) {
 		return UbiUndefined.getInstance();
 	}
+	
 	public boolean canPut(String name) {
 		if (properties.containsKey(name)) {
 			Property prop = properties.get(name);
@@ -47,9 +57,11 @@ public class UbiObject {
 			return prototype.canPut(name);
 		return true;
 	}
+	
 	public boolean canPut(int index) {
 		return false;
 	}
+	
 	public void put(String name, UbiObject obj, int attribute) {
 		if (canPut(name)) {
 			Property prop = properties.get(name);
@@ -61,9 +73,11 @@ public class UbiObject {
 			}
 		}
 	}
+	
 	public void put(int index, UbiObject obj, int attribute) {
 		// do nothing.
 	}
+	
 	public boolean has(String name) {
 		if (properties.containsKey(name))
 			return true;
@@ -71,6 +85,7 @@ public class UbiObject {
 			return false;
 		return prototype.has(name);
 	}
+	
 	public UbiObject lookup(String name) {
 		if (has(name)) {
 			return this;
@@ -82,6 +97,7 @@ public class UbiObject {
 			}
 		}
 	}
+	
 	public boolean delete(String name) {
 		Property prop = properties.get(name);
 		if (prop == null)
@@ -91,31 +107,40 @@ public class UbiObject {
 		properties.remove(name);
 		return true;
 	}
+	
 	public boolean delete(int index) {
 		return true;
 	}
+	
 	public UbiObject call(Environment env, Evaluator eval, UbiObject[] args, UbiObject thisObj) throws UbiException {
 		throw new UbiException();
 	}
+	
 	public UbiObject construct(Environment env, Evaluator eval, UbiObject[] args) throws UbiException {
 		throw new UbiException();
 	}
+	
 	public int getAttribute(String name) {
 		Property prop = getProperty(name);
 		return prop.getAttribute();
 	}
+	
 	public int getAttribute(int index) {
 		return Property.EMPTY;
 	}
+	
 	public boolean toBoolean() {
 		return true;
 	}
+	
 	public double toNumber() {
 		return 0.0d;
 	}
+	
 	public int toInt() {
 		return 0;
 	}
+	
 	public String toString() {
 		Enumeration<String> k = properties.keys();
 		String s = "";
@@ -131,18 +156,23 @@ public class UbiObject {
 	public Property getProperty(String name) {
 		return properties.get(name);
 	}
+	
 	public Property getProperty(int index) throws UbiException {
 		throw new UbiException();
 	}
+	
 	public void putProperty(Property property) {
 		properties.put(property.getName(), property);
 	}
+	
 	public int getPropertyCount() {
 		return properties.size();
 	}
+	
 	public Enumeration<String> getPropertyNames() {
 		return properties.keys();
 	}
+	
 	public Property[] getProperties() {
 		Collection<Property> collection = properties.values();
 		return collection.toArray(new Property[0]);
