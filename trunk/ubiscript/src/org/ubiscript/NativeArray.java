@@ -68,8 +68,12 @@ public class NativeArray extends NativeObject {
 	}
 	
 	public String toString() {
-		// TODO toString 구현하기.
-		return "[]";
+		String s = "";
+		for (int i = 0; i < array.size(); i++) {
+			if (i > 0) s = s + ",";
+			s = s + array.get(i).toString();
+		}
+		return "[" + s + "]";
 	}
 
 	public UbiObject construct(Environment env, Evaluator eval, UbiObject[] args) throws UbiException {

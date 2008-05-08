@@ -46,7 +46,7 @@ public class Evaluator {
 			if (base == null)
 				UbiError.throwReferenceError(
 						currentNode.getLine(), currentNode.getCharPositionInLine(), ref);
-			if (ref.getNameOrIndex() == UbiRef.REF_BY_NAME)
+			if (ref.getNameOrIndex() == UbiAbstractRef.REF_BY_NAME)
 				return getValue(base.get(ref.getName()));
 			else
 				return getValue(base.get(ref.getIndex()));
@@ -69,7 +69,7 @@ public class Evaluator {
 			if (o == null)
 				UbiError.throwReferenceError(
 						currentNode.getLine(), currentNode.getCharPositionInLine(), r);
-			if (r.getNameOrIndex() == UbiRef.REF_BY_NAME)
+			if (r.getNameOrIndex() == UbiAbstractRef.REF_BY_NAME)
 				o.put(r.getName(), value, Property.EMPTY);
 			else
 				o.put(r.getIndex(), value, Property.EMPTY);
@@ -145,7 +145,14 @@ public class Evaluator {
 			if (o1 == null) {
 				return env.getUndefined();
 			} else {
-				return env.newRef(o1, t.getText());
+				// Ref/NetRef가 직접 object의 property로 들어있는 경우를 위한 처리
+				// 이러한 경우는 delegateExecute시 발생함.
+				// TODO 이러한 처리가 직접적인 해결 방법은 아닌 듯. 재고려가 필요함.
+				o2 = o1.get(t.getText());
+				if (o2 instanceof UbiAbstractRef)
+					return o2;
+				else
+					return env.newRef(o1, t.getText());
 			}
 		case UbiscriptParser.FIELD:
 			o1 = getValue(evaluateExpression(env, t.getChild(0)));
@@ -429,16 +436,13 @@ public class Evaluator {
 			Set<String> vars = new HashSet<String>();
 			FV(t2, vars);
 			String[] names = vars.toArray(new String[0]);
-			UbiObject[] values = new UbiObject[names.length];
-			for (int i = 0; i < names.length; i++) {
-				UbiObject base = env.getCurrentScope().lookup(names[i]);
-				if (base != null)
-					values[i] = base.get(names[i]);
-			}
+			UbiObject[] bases = new UbiObject[names.length];
+			for (int i = 0; i < names.length; i++)
+				bases[i] = env.getCurrentScope().lookup(names[i]);
 			if (evaluatorDelegate == null)
 				UbiError.throwRuntimeError(t.getLine(), t.getCharPositionInLine(),
 						Messages.getString("error.runtime.nodelegate"));
-			evaluatorDelegate.delegateExecute(p, names, values, code);
+			evaluatorDelegate.delegateExecute(p, names, bases, code);
 			break;
 		}
 	}

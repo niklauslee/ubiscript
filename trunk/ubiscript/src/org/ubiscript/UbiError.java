@@ -48,7 +48,7 @@ public class UbiError extends UbiException {
 				String.format(Messages.getString("error.runtime"), line, position, message));
 	}
 
-	public static void throwReferenceError(int line, int position, UbiRef ref) throws UbiError {
+	public static void throwReferenceError(int line, int position, UbiAbstractRef ref) throws UbiError {
 		throw new UbiError(-1, -1,
 				String.format(Messages.getString("error.reference"), line, position, ref.getName()));
 	}
