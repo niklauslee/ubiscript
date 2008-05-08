@@ -107,21 +107,26 @@ public class Environment {
 		return new UbiContinue();
 	}
 	
-	public UbiRef newRef(UbiObject base, String name) {
-		UbiRef o = new UbiRef(base, name);
+	public UbiAbstractRef newRef(UbiObject base, String name) {
+		UbiAbstractRef o = new UbiRef(base, name);
 		return o;
 	}
 	
-	public UbiRef newRef(UbiObject base, int index) {
-		UbiRef o = new UbiRef(base, index); 
+	public UbiAbstractRef newRef(UbiObject base, int index) {
+		UbiAbstractRef o = new UbiRef(base, index); 
 		return o;
 	}
 	
-	public UbiNetRef newNetRef(String location, String placeId, String refId) {
-		UbiNetRef o = new UbiNetRef(location, placeId, refId);
+	public UbiNetRef newNetRef(String location, String placeId, String baseId, String name) {
+		UbiNetRef o = new UbiNetRef(location, placeId, baseId, name);
 		return o; 
 	}
 	
+	public UbiNetRef newNetRef(String location, String placeId, String baseId, int index) {
+		UbiNetRef o = new UbiNetRef(location, placeId, baseId, index);
+		return o; 
+	}
+
 	public UbiActivation newActivation() {
 		UbiActivation o = new UbiActivation();
 		return o;
