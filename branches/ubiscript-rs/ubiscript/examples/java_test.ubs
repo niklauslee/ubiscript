@@ -1,0 +1,3 @@
+var o = new JavaObject("javax.swing.JOptionPane");
+o.showMessageDialog(null, "It is 7:00 AM. Wake-Up!");
+println("done.");
