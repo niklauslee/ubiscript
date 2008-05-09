@@ -11,6 +11,8 @@ import javax.swing.JButton;
 import org.ubiscript.Interpreter;
 import org.ubiscript.UbiException;
 import java.awt.Font;
+import javax.swing.JSplitPane;
+import javax.swing.JScrollPane;
 
 public class TestClient extends JFrame {
 
@@ -21,6 +23,14 @@ public class TestClient extends JFrame {
 	private JTextArea jTextArea = null;
 
 	private JButton jButton = null;
+
+	private JSplitPane jSplitPane = null;
+
+	private JScrollPane jScrollPane1 = null;
+
+	private JScrollPane jScrollPane = null;
+
+	private JTextArea jTextArea1 = null;
 
 	/**
 	 * This method initializes jTextArea	
@@ -59,6 +69,61 @@ public class TestClient extends JFrame {
 	}
 
 	/**
+	 * This method initializes jSplitPane	
+	 * 	
+	 * @return javax.swing.JSplitPane	
+	 */
+	private JSplitPane getJSplitPane() {
+		if (jSplitPane == null) {
+			jSplitPane = new JSplitPane();
+			jSplitPane.setLeftComponent(getJScrollPane1());
+			jSplitPane.setRightComponent(getJScrollPane());
+		}
+		return jSplitPane;
+	}
+
+	/**
+	 * This method initializes jScrollPane1	
+	 * 	
+	 * @return javax.swing.JScrollPane	
+	 */
+	private JScrollPane getJScrollPane1() {
+		if (jScrollPane1 == null) {
+			jScrollPane1 = new JScrollPane();
+			jScrollPane1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+			jScrollPane1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+			jScrollPane1.setPreferredSize(new Dimension(500, 17));
+			jScrollPane1.setViewportView(getJTextArea());
+		}
+		return jScrollPane1;
+	}
+
+	/**
+	 * This method initializes jScrollPane	
+	 * 	
+	 * @return javax.swing.JScrollPane	
+	 */
+	private JScrollPane getJScrollPane() {
+		if (jScrollPane == null) {
+			jScrollPane = new JScrollPane();
+			jScrollPane.setViewportView(getJTextArea1());
+		}
+		return jScrollPane;
+	}
+
+	/**
+	 * This method initializes jTextArea1	
+	 * 	
+	 * @return javax.swing.JTextArea	
+	 */
+	private JTextArea getJTextArea1() {
+		if (jTextArea1 == null) {
+			jTextArea1 = new JTextArea();
+		}
+		return jTextArea1;
+	}
+
+	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -86,7 +151,7 @@ public class TestClient extends JFrame {
 	 * @return void
 	 */
 	private void initialize() {
-		this.setSize(602, 373);
+		this.setSize(824, 423);
 		this.setContentPane(getJContentPane());
 		this.setTitle("JFrame");
 	}
@@ -100,8 +165,8 @@ public class TestClient extends JFrame {
 		if (jContentPane == null) {
 			jContentPane = new JPanel();
 			jContentPane.setLayout(new BorderLayout());
-			jContentPane.add(getJTextArea(), BorderLayout.CENTER);
 			jContentPane.add(getJButton(), BorderLayout.SOUTH);
+			jContentPane.add(getJSplitPane(), BorderLayout.CENTER);
 		}
 		return jContentPane;
 	}

@@ -401,7 +401,7 @@ public class Evaluator {
 			if (!(o1 instanceof NativePlace))
 				UbiError.throwRuntimeError(t1.getLine(), t1.getCharPositionInLine(), 
 						Messages.getString("error.runtime.type.place"));
-			NativePlace p = (NativePlace) o1;
+			UbiPlace p = (UbiPlace) o1;
 			String code = encodeTree(t2);
 			// get free variables
 			Set<String> vars = new HashSet<String>();
@@ -413,7 +413,8 @@ public class Evaluator {
 			if (evaluatorDelegate == null)
 				UbiError.throwRuntimeError(t.getLine(), t.getCharPositionInLine(),
 						Messages.getString("error.runtime.nodelegate"));
-			evaluatorDelegate.execute(p, names, bases, code);
+			// evaluatorDelegate.execute(p, names, bases, code);
+			evaluatorDelegate.execute(p, code);
 			break;
 		}
 	}
