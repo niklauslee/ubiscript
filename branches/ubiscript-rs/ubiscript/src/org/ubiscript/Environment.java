@@ -10,8 +10,8 @@ import org.antlr.runtime.tree.*;
 
 public class Environment {
 	
-	private UbiObject currentScope;
-	private UbiObject rootScope;
+	private Scriptable currentScope;
+	private Scriptable rootScope;
 
 	public Environment() throws UbiException {
 		initialize();
@@ -31,23 +31,23 @@ public class Environment {
 		currentScope = rootScope;
 	}
 
-	public UbiObject getCurrentScope() {
+	public Scriptable getCurrentScope() {
 		return currentScope;
 	}
 
-	public UbiObject getRootScope() {
+	public Scriptable getRootScope() {
 		return rootScope;
 	}
 
-	public void setRootScope(UbiObject obj) {
+	public void setRootScope(Scriptable obj) {
 		rootScope = obj;
 	}
 
 	public void pushScope() {
-		pushScope(newActivation());
+		pushScope(newObject());
 	}
 	
-	public void pushScope(UbiObject scope) {
+	public void pushScope(Scriptable scope) {
 		scope.setParentScope(currentScope);
 		currentScope = scope;
 	}
@@ -59,43 +59,43 @@ public class Environment {
 	}
 	
 	public UbiObject newObject() {
-		UbiObject o = new UbiObject(rootScope.get(Constants.Id_Object));
+		UbiObject o = new UbiObject(rootScope.get(Constants.Id_Object, rootScope));
 		return o;
 	}
 	
 	public UbiNumber newNumber(double value) {
-		UbiNumber o = new UbiNumber(rootScope.get(Constants.Id_Number), value);
+		UbiNumber o = new UbiNumber(rootScope.get(Constants.Id_Number, rootScope), value);
 		return o;
 	}
 	
 	public UbiBoolean newBoolean(boolean value) {
-		UbiBoolean o = new UbiBoolean(rootScope.get(Constants.Id_Boolean), value);
+		UbiBoolean o = new UbiBoolean(rootScope.get(Constants.Id_Boolean, rootScope), value);
 		return o;
 	}
 	
 	public UbiString newString(String value) {
-		UbiString o = new UbiString(rootScope.get(Constants.Id_String), value);
+		UbiString o = new UbiString(rootScope.get(Constants.Id_String, rootScope), value);
 		return o;
 	}
 	
 	public UbiFunction newFunction(String[] parameters, Tree bodyTree, String bodyCode) throws UbiException {
-		UbiFunction o = new UbiFunction(rootScope.get(Constants.Id_Function), parameters, bodyTree, bodyCode);
-		UbiObject p = newObject();
+		UbiFunction o = new UbiFunction(rootScope.get(Constants.Id_Function, rootScope), parameters, bodyTree, bodyCode);
+		Scriptable p = newObject();
 		o.put(Constants.Id_prototype, p, Property.DONTDELETE);
 		return o;
 	}
 	
-	public NativeArray newArray(int size, UbiObject[] values) {
-		NativeArray o = new NativeArray(rootScope.get(Constants.Id_Array), this, size, values); 
+	public NativeArray newArray(int size, Scriptable[] values) {
+		NativeArray o = new NativeArray(rootScope.get(Constants.Id_Array, rootScope), this, size, values); 
 		return o;
 	}
 	
 	public NativePlace newPlace(String location, String placeId) {
-		NativePlace o = new NativePlace(rootScope.get(Constants.Id_Place), this, location, placeId);
+		NativePlace o = new NativePlace(rootScope.get(Constants.Id_Place, rootScope), this, location, placeId);
 		return o;
 	}
 	
-	public UbiReturn newReturn(UbiObject result) {
+	public UbiReturn newReturn(Scriptable result) {
 		return new UbiReturn(result);
 	}
 	
@@ -107,28 +107,13 @@ public class Environment {
 		return new UbiContinue();
 	}
 	
-	public UbiAbstractRef newRef(UbiObject base, String name) {
-		UbiAbstractRef o = new UbiRef(base, name);
+	public UbiRef newRef(Scriptable base, String name) {
+		UbiRef o = new UbiRef(base, name);
 		return o;
 	}
 	
-	public UbiAbstractRef newRef(UbiObject base, int index) {
-		UbiAbstractRef o = new UbiRef(base, index); 
-		return o;
-	}
-	
-	public UbiNetRef newNetRef(String location, String placeId, String baseId, String name) {
-		UbiNetRef o = new UbiNetRef(location, placeId, baseId, name);
-		return o; 
-	}
-	
-	public UbiNetRef newNetRef(String location, String placeId, String baseId, int index) {
-		UbiNetRef o = new UbiNetRef(location, placeId, baseId, index);
-		return o; 
-	}
-
-	public UbiActivation newActivation() {
-		UbiActivation o = new UbiActivation();
+	public UbiRef newRef(Scriptable base, int index) {
+		UbiRef o = new UbiRef(base, index); 
 		return o;
 	}
 	

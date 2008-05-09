@@ -19,10 +19,10 @@ public class Property {
 			PREDEFINED = CONST & TRANSIENT;
 	
 	private String name = null;
-	UbiObject value = null;
+	Scriptable value = null;
 	private int attribute;
 	
-	public Property(String name, UbiObject value, int attribute) {
+	public Property(String name, Scriptable value, int attribute) {
 		this.name = name;
 		this.value = value;
 		this.attribute = attribute;
@@ -32,11 +32,11 @@ public class Property {
 		return name;
 	}
 	
-	public UbiObject getValue() {
+	public Scriptable getValue() {
 		return value;
 	}
 	
-	public void setValue(UbiObject value) {
+	public void setValue(Scriptable value) {
 		this.value = value;
 	}
 	
@@ -55,4 +55,9 @@ public class Property {
 	public String toString() {
 		return name + " = " + value;
 	}
+	
+	public static boolean hasAttribute(int base, int attribute) {
+		return ((base & attribute) != 0);
+	}
+	
 }

@@ -2,11 +2,14 @@ package org.ubiscript;
 
 @SuppressWarnings("serial")
 public class UbiReturn extends UbiException {
-	private UbiObject result = null;
-	public UbiReturn(UbiObject result) {
+	
+	private Scriptable result = null;
+	
+	public UbiReturn(Scriptable result) {
 		this.result = result;
 	}
-	public UbiObject getResult() {
+	
+	public Scriptable getResult() {
 		return result;
 	}
 }

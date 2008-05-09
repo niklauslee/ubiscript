@@ -1,8 +1,8 @@
 package org.ubiscript;
 
-public class UbiBoolean extends UbiObject {
+public class UbiBoolean extends ScriptableObject {
 	private boolean value = false;
-	public UbiBoolean(UbiObject prototype, boolean value) {
+	public UbiBoolean(Scriptable prototype, boolean value) {
 		super(prototype);
 		this.value = value;
 	}

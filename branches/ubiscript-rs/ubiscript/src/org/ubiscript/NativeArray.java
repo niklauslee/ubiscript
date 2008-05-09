@@ -9,11 +9,11 @@ public class NativeArray extends NativeObject {
 	private static final String
 			Id_length = "length";
 	
-	private Vector<UbiObject> array;
+	private Vector<Scriptable> array;
 	
-	public NativeArray(UbiObject prototype, Environment env, int size, UbiObject[] values) {
+	public NativeArray(Scriptable prototype, Environment env, int size, Scriptable[] values) {
 		super(prototype, env);
-		array = new Vector<UbiObject>();
+		array = new Vector<Scriptable>();
 		for (int i = 0; i < size; i++)
 			if (values != null)
 				array.add(values[i]);
@@ -27,7 +27,7 @@ public class NativeArray extends NativeObject {
 	}
 
 	public static void init(Environment env) {
-		UbiObject obj = new NativeArray(null, env, 0, null);
+		Scriptable obj = new NativeArray(null, env, 0, null);
 		obj.put(Constants.Id_prototype, obj, Property.CONST);
 		obj.put(Constants.Id_constructor, obj, Property.CONST);
 		env.getRootScope().put(Constants.Id_Array, obj, Property.CONST);
@@ -45,7 +45,7 @@ public class NativeArray extends NativeObject {
 		return false;
 	}
 
-	public UbiObject get(int index) {
+	public Scriptable get(int index) {
 		return array.get(index);
 	}
 
@@ -53,13 +53,13 @@ public class NativeArray extends NativeObject {
 		return Property.EMPTY;
 	}
 
-	public UbiObject get(String name) {
+	public Scriptable get(String name, Scriptable start) {
 		if (name.equals(Id_length))
 			return env.newNumber(array.size());
-		return super.get(name);
+		return super.get(name, start);
 	}
 
-	public void put(int index, UbiObject obj, int attribute) {
+	public void put(int index, Scriptable obj, int attribute) {
 		array.set(index, obj);
 	}
 	
@@ -76,7 +76,7 @@ public class NativeArray extends NativeObject {
 		return "[" + s + "]";
 	}
 
-	public UbiObject construct(Environment env, Evaluator eval, UbiObject[] args) throws UbiException {
+	public Scriptable construct(Environment env, Evaluator eval, Scriptable[] args) throws UbiException {
 		int size = 0;
 		boolean initialValuesProvided = false;
 		if (args.length > 0) {
@@ -87,12 +87,13 @@ public class NativeArray extends NativeObject {
 				initialValuesProvided = true;
 			}
 		}
-		UbiObject obj = new NativeArray(env.getRootScope().get(Constants.Id_Array),
+		Scriptable root = env.getRootScope();
+		Scriptable obj = new NativeArray(root.get(Constants.Id_Array, root),
 				env, size, (initialValuesProvided ? args : null)); 
 		return obj;
 	}
 
-	public UbiObject invoke(Environment env, Evaluator eval, String name, UbiObject[] args, UbiObject thisObject) throws UbiException {
+	public Scriptable invoke(Environment env, Evaluator eval, String name, Scriptable[] args, Scriptable thisObject) throws UbiException {
 		return env.getUndefined();
 	}
 }

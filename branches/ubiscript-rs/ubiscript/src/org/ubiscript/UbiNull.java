@@ -1,6 +1,6 @@
 package org.ubiscript;
 
-public class UbiNull extends UbiObject {
+public class UbiNull extends ScriptableObject {
 	
 	private static UbiNull instance = new UbiNull();
 
@@ -20,19 +20,19 @@ public class UbiNull extends UbiObject {
 		return (obj instanceof UbiNull);
 	}
 	
+	public int toInt() {
+		return 0;
+	}
+	
 	public boolean toBoolean() {
 		return false;
 	}
 	
 	public double toNumber() {
 		return 0.0d;
-	}
-	
-	public int toInt() {
-		return 0;
-	}
+	}	
 	
 	public String toString() {
-		return "null";
+		return Constants.Id_null;
 	}
 }

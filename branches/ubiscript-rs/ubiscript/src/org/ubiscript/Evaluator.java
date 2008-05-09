@@ -39,50 +39,37 @@ public class Evaluator {
 		this.evaluatorDelegate = evaluatorDelegate;
 	}
 	
-	private UbiObject getValue(UbiObject obj) throws UbiException {
+	private Scriptable getValue(Scriptable obj) throws UbiException {
 		if (obj instanceof UbiRef) {
 			UbiRef ref = (UbiRef) obj;
-			UbiObject base = ref.getBase();
+			Scriptable base = ref.getBase();
 			if (base == null)
 				UbiError.throwReferenceError(
 						currentNode.getLine(), currentNode.getCharPositionInLine(), ref);
-			if (ref.getNameOrIndex() == UbiAbstractRef.REF_BY_NAME)
-				return getValue(base.get(ref.getName()));
+			if (ref.getNameOrIndex() == UbiRef.REF_BY_NAME)
+				return base.get(ref.getName(), base);
 			else
-				return getValue(base.get(ref.getIndex()));
-		} else if (obj instanceof UbiNetRef) {
-			UbiNetRef ref = (UbiNetRef) obj;
-			if (evaluatorDelegate == null)
-				UbiError.throwRuntimeError(
-						currentNode.getLine(), currentNode.getCharPositionInLine(),
-						Messages.getString("error.runtime.nodelegate"));
-			return evaluatorDelegate.delegateGet(ref);
+				return base.get(ref.getIndex());
 		} else {
 			return obj;
 		}
 	}
 	
-	private void putValue(UbiObject ref, UbiObject value) throws UbiException {
+	private void putValue(Scriptable ref, Scriptable value) throws UbiException {
 		if (ref instanceof UbiRef) {
 			UbiRef r = (UbiRef) ref;
-			UbiObject o = r.getBase();
+			Scriptable o = r.getBase();
 			if (o == null)
 				UbiError.throwReferenceError(
 						currentNode.getLine(), currentNode.getCharPositionInLine(), r);
-			if (r.getNameOrIndex() == UbiAbstractRef.REF_BY_NAME)
+			if (r.getNameOrIndex() == UbiRef.REF_BY_NAME)
 				o.put(r.getName(), value, Property.EMPTY);
 			else
-				o.put(r.getIndex(), value, Property.EMPTY);
-		} else if (ref instanceof UbiNetRef) {
-			UbiNetRef r = (UbiNetRef) ref;
-			if (evaluatorDelegate == null)
-				UbiError.throwRuntimeError(-1, -1,
-						Messages.getString("error.runtime.nodelegate"));
-			evaluatorDelegate.delegatePut(r, value);
+				o.put(r.getIndex(), value);
 		}
 	}
 	
-	public UbiObject evaluateExpression(Environment env, String code) throws UbiException {
+	public Scriptable evaluateExpression(Environment env, String code) throws UbiException {
 		UbiscriptLexer lex = new UbiscriptLexer(new ANTLRStringStream(code));
 		CommonTokenStream tokens = new CommonTokenStream(lex);
 		UbiscriptParser parser = new UbiscriptParser(tokens);
@@ -111,10 +98,10 @@ public class Evaluator {
 		}
 	}
 	
-	public UbiObject evaluateExpression(Environment env, Tree t) throws UbiException {
+	public Scriptable evaluateExpression(Environment env, Tree t) throws UbiException {
 		currentNode = t;
-		UbiObject o1, o2;
-		UbiObject[] args;
+		Scriptable o1, o2;
+		Scriptable[] args;
 		Tree t1, t2, t3;
 		switch (t.getType()) {
 		case UbiscriptParser.INTEGER:
@@ -126,7 +113,7 @@ public class Evaluator {
 		case UbiscriptParser.BOOLEAN:
 			return env.newBoolean(Boolean.parseBoolean(t.getText()));
 		case UbiscriptParser.ARRAY:
-			args = new UbiObject[t.getChildCount()];
+			args = new Scriptable[t.getChildCount()];
 			for (int i = 0; i < t.getChildCount(); i++)
 				args[i] = getValue(evaluateExpression(env, t.getChild(i)));
 			return env.newArray(t.getChildCount(), args);
@@ -145,14 +132,7 @@ public class Evaluator {
 			if (o1 == null) {
 				return env.getUndefined();
 			} else {
-				// Ref/NetRef가 직접 object의 property로 들어있는 경우를 위한 처리
-				// 이러한 경우는 delegateExecute시 발생함.
-				// TODO 이러한 처리가 직접적인 해결 방법은 아닌 듯. 재고려가 필요함.
-				o2 = o1.get(t.getText());
-				if (o2 instanceof UbiAbstractRef)
-					return o2;
-				else
-					return env.newRef(o1, t.getText());
+				return env.newRef(o1, t.getText());
 			}
 		case UbiscriptParser.FIELD:
 			o1 = getValue(evaluateExpression(env, t.getChild(0)));
@@ -170,27 +150,17 @@ public class Evaluator {
 			}
 		case UbiscriptParser.CALL:
 			o1 = evaluateExpression(env, t.getChild(0)); // function
-			UbiObject thisObj = null;
+			Scriptable thisObj = null;
 			if (o1 instanceof UbiRef)
 				thisObj = ((UbiRef) o1).getBase();
-			if (o1 instanceof UbiActivation)
-				thisObj = null;
 			o1 = getValue(o1);
 			// evaluate all arguments
 			t1 = t.getChild(1); // UbiscriptParser.ARGS
-			args = new UbiObject[t1.getChildCount()];
+			args = new Scriptable[t1.getChildCount()];
 			for (int i = 0; i < t1.getChildCount(); i++) {
 				args[i] = getValue(evaluateExpression(env, t1.getChild(i)));
 			}
-			UbiObject result = null;
-			if (o1 instanceof UbiNetRef) { // remote function call
-				if (evaluatorDelegate == null)
-					UbiError.throwRuntimeError(t.getLine(), t.getCharPositionInLine(),
-							Messages.getString("error.runtime.nodelegate"));
-				result = evaluatorDelegate.delegateCall((UbiNetRef) o1, args);
-			} else { // local function call
-				result = o1.call(env, this, args, thisObj);
-			}
+			Scriptable result = o1.call(env, this, args, thisObj);
 			return result;
 		case UbiscriptParser.NEW:
 			t1 = t.getChild(0);
@@ -201,7 +171,7 @@ public class Evaluator {
 			t3 = t1.getChild(1); // arguments (UbiscriptParser.ARGS)
 			o1 = getValue(evaluateExpression(env, t2));
 			// evaluate all arguments
-			args = new UbiObject[t3.getChildCount()];
+			args = new Scriptable[t3.getChildCount()];
 			for (int i = 0; i < t3.getChildCount(); i++) {
 				args[i] = getValue(evaluateExpression(env, t3.getChild(i)));
 			}
@@ -298,7 +268,7 @@ public class Evaluator {
 	
 	public void evaluateStatement(Environment env, Tree t) throws UbiException {
 		currentNode = t;
-		UbiObject o1;
+		Scriptable o1;
 		String id;
 		Tree t1, t2, t3, t4;
 		switch (t.getType()) {
@@ -333,7 +303,7 @@ public class Evaluator {
 				for (int i = 0; i < t1.getChildCount(); i++)
 					evaluateStatement(env, t1.getChild(i));
 			}
-			UbiObject cond = getValue(evaluateExpression(env, t2));
+			Scriptable cond = getValue(evaluateExpression(env, t2));
 			try {
 				while (cond.toBoolean()) {
 					evaluateStatement(env, t4);
@@ -367,12 +337,13 @@ public class Evaluator {
 				}
 			} else {
 				// enumerate properties in object
-				Property[] props = o1.getProperties();
-				for (int i = 0; i < props.length; i++)
-					if (!props[i].hasAttribute(Property.DONTENUM)) {
-						env.getCurrentScope().put(id, props[i].getValue(), Property.EMPTY);
+				String[] names = o1.getNames();
+				for (int i = 0; i < names.length; i++) {
+					if (Property.hasAttribute(o1.getAttribute(names[i]), Property.DONTENUM)) {
+						env.getCurrentScope().put(id, o1.get(names[i], o1), Property.EMPTY);
 						evaluateStatement(env, t3);
 					}
+				}
 			}
 			break;
 		case UbiscriptParser.WHILE:
@@ -436,13 +407,13 @@ public class Evaluator {
 			Set<String> vars = new HashSet<String>();
 			FV(t2, vars);
 			String[] names = vars.toArray(new String[0]);
-			UbiObject[] bases = new UbiObject[names.length];
+			Scriptable[] bases = new Scriptable[names.length];
 			for (int i = 0; i < names.length; i++)
 				bases[i] = env.getCurrentScope().lookup(names[i]);
 			if (evaluatorDelegate == null)
 				UbiError.throwRuntimeError(t.getLine(), t.getCharPositionInLine(),
 						Messages.getString("error.runtime.nodelegate"));
-			evaluatorDelegate.delegateExecute(p, names, bases, code);
+			evaluatorDelegate.execute(p, names, bases, code);
 			break;
 		}
 	}
