@@ -51,12 +51,12 @@ public class ObjectProxy extends ScriptableObject {
 		return 0;
 	}
 	
-	public Scriptable call(Environment env, Evaluator eval, Scriptable[] args,
+	public Scriptable call(Env env, Evaluator eval, Scriptable[] args,
 			Scriptable thisObj) throws UbiException {
 		return proxyDelegate.call(remoteRef, args);
 	}
 
-	public Scriptable construct(Environment env, Evaluator eval, Scriptable[] args)
+	public Scriptable construct(Env env, Evaluator eval, Scriptable[] args)
 			throws UbiException {
 		return proxyDelegate.construct(remoteRef, args);
 	}

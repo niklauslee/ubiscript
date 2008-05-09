@@ -8,12 +8,12 @@ import org.antlr.runtime.tree.*;
 // TODO NativeXMLObject 구현하기
 // TODO NativeWebObject 구현하기
 
-public class Environment {
+public class Env {
 	
 	private Scriptable currentScope;
 	private Scriptable rootScope;
 
-	public Environment() throws UbiException {
+	public Env() throws UbiException {
 		initialize();
 	}
 

@@ -1,12 +1,12 @@
 package org.ubiscript;
 
-public class NativePlace extends NativeObject {
+public class NativePlace extends NativeScriptable {
 
 	private static final String DEFAULT_LOCATION = "http://127.0.0.1/";
 	private String location;
 	private String placeId;
 	
-	public NativePlace(Scriptable prototype, Environment env, String location, String placeId) {
+	public NativePlace(Scriptable prototype, Env env, String location, String placeId) {
 		super(prototype, env);
 		this.location = location;
 		if ((placeId == null) || (placeId.trim().equals("")))
@@ -15,7 +15,7 @@ public class NativePlace extends NativeObject {
 			this.placeId = placeId;
 	}
 
-	public static void init(Environment env) {
+	public static void init(Env env) {
 		Scriptable obj = new NativePlace(null, env, DEFAULT_LOCATION, null);
 		obj.put(Constants.Id_prototype, obj, Property.CONST);
 		obj.put(Constants.Id_constructor, obj, Property.CONST);
@@ -34,14 +34,14 @@ public class NativePlace extends NativeObject {
 		return "<PLACE:" + location + "#" + placeId + ">";
 	}
 	
-	public Scriptable construct(Environment env, Evaluator eval, Scriptable[] args) throws UbiException {
+	public Scriptable construct(Env env, Evaluator eval, Scriptable[] args) throws UbiException {
 		String location = DEFAULT_LOCATION;
 		if (args.length > 0)
 			location = args[0].toString();
 		return env.newPlace(location, null);
 	}
 
-	public Scriptable invoke(Environment env, Evaluator eval, String name, Scriptable[] args, Scriptable thisObject) throws UbiException {
+	public Scriptable invoke(Env env, Evaluator eval, String name, Scriptable[] args, Scriptable thisObject) throws UbiException {
 		return env.getUndefined();
 	}
 

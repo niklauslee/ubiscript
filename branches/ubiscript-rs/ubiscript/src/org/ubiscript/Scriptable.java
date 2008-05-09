@@ -24,8 +24,8 @@ public interface Scriptable {
 	public int getSize();
 	
 	// for Function
-	public Scriptable call(Environment env, Evaluator eval, Scriptable[] args, Scriptable thisObject) throws UbiException;
-	public Scriptable construct(Environment env, Evaluator eval, Scriptable[] args) throws UbiException;
+	public Scriptable call(Env env, Evaluator eval, Scriptable[] args, Scriptable thisObject) throws UbiException;
+	public Scriptable construct(Env env, Evaluator eval, Scriptable[] args) throws UbiException;
 	
 	// for Primitive
 	public int toInt();

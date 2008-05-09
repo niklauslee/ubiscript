@@ -1,13 +1,17 @@
 package org.ubiscript;
 
+import java.util.Hashtable;
+
 public class ScriptableObject implements Scriptable {
 
 	protected Scriptable prototype;
 	protected Scriptable parentScope;
+	private Hashtable<String, Property> properties;
 
 	public ScriptableObject(Scriptable prototype) {
 		this.prototype = prototype;
 		parentScope = null;
+		properties = new Hashtable<String, Property>();
 	}
 	
 	public String getClassName() {
@@ -42,32 +46,66 @@ public class ScriptableObject implements Scriptable {
 		}
 	}
 
-	// for Object
+	// for Object -------------------------------------------------------------
+	
 	public boolean has(String name, Scriptable start) {
+		if (properties.containsKey(name))
+			return true;
+		if (prototype != null)
+			return prototype.has(name, start);
 		return false;
 	}
-	
+
 	public Scriptable get(String name, Scriptable start) {
-		return null;
+		Property prop = properties.get(name);
+		if (prop != null)
+			return prop.getValue();
+		if (prototype != null)
+			return prototype.get(name, start);
+		return UbiUndefined.getInstance();
 	}
 	
 	public int getAttribute(String name) {
+		Property prop = properties.get(name);
+		if (prop != null) {
+			return prop.getAttribute();
+		}
+		if (prototype != null)
+			return prototype.getAttribute(name);
 		return Property.EMPTY;
 	}
-	
-	public void put(String name, Scriptable value, int attribute) {
-		// do nothing.
+			
+	public void put(String name, Scriptable obj, int attribute) {
+		Property prop = properties.get(name);
+		if (prop == null) {
+			properties.put(name, new Property(name, obj, attribute));
+		} else {
+			if (!prop.hasAttribute(Property.READONLY)) {
+				prop.setValue(obj);
+				prop.setAttribute(attribute);
+			}
+		}
 	}
 	
 	public boolean delete(String name) {
+		Property prop = properties.get(name);
+		if (prop != null) {
+			if (prop.hasAttribute(Property.DONTDELETE))
+				return false;
+			else {
+				properties.remove(name);
+				return true;
+			}
+		}
 		return false;
 	}
-	
+
 	public String[] getNames() {
-		return null;
+		return properties.keySet().toArray(new String[0]);
 	}
 	
-	// for Array
+	// for Array --------------------------------------------------------------
+	
 	public Scriptable get(int index) {
 		return null;
 	}
@@ -80,12 +118,13 @@ public class ScriptableObject implements Scriptable {
 		return 0;
 	}
 	
-	// for Function
-	public Scriptable call(Environment env, Evaluator eval, Scriptable[] args, Scriptable thisObject) throws UbiException {
+	// for Function -----------------------------------------------------------
+	
+	public Scriptable call(Env env, Evaluator eval, Scriptable[] args, Scriptable thisObject) throws UbiException {
 		return null;
 	}
 	
-	public Scriptable construct(Environment env, Evaluator eval, Scriptable[] args) throws UbiException {
+	public Scriptable construct(Env env, Evaluator eval, Scriptable[] args) throws UbiException {
 		return null;
 	}
 
