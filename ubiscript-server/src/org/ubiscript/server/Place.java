@@ -19,14 +19,14 @@ public class Place {
 	private String location;
 	private String placeId;
 	private Interpreter interpreter;
-	private Hashtable<String, UbiObject> remoteRefs;
+	private Hashtable<String, Scriptable> remoteRefs;
 	private UbiscriptHttpClient client;
 	
 	public Place(String location, String placeId) {
 		this.location = location;
 		this.placeId = placeId;
 		interpreter = new Interpreter();
-		remoteRefs = new Hashtable<String, UbiObject>();
+		remoteRefs = new Hashtable<String, Scriptable>();
 		client = new UbiscriptHttpClient();
 		interpreter.setEvaluatorDelegate(new DelegateImpl());
 	}
@@ -43,15 +43,15 @@ public class Place {
 		return interpreter;
 	}
 	
-	public String addRemoteRef(UbiObject obj) {
-		// TODO refId의 길이를 줄이는 방법을 고려 (int를 사용)
-		String refId = java.util.UUID.randomUUID().toString();
-		remoteRefs.put(refId, obj);
-		return refId;
+	public String addRemoteRef(Scriptable obj) {
+		// TODO baseId의 길이를 줄이는 방법을 고려 (int를 사용)
+		String id = java.util.UUID.randomUUID().toString();
+		remoteRefs.put(id, obj);
+		return id;
 	}
 	
-	public UbiObject getRemoteRef(String refId) {
-		return remoteRefs.get(refId);
+	public Scriptable getRemoteRef(String id) {
+		return remoteRefs.get(id);
 	}
 	
 	public String execute(String freeVars, String code) {
@@ -68,9 +68,9 @@ public class Place {
 					String name = items[0].trim();
 					String location = items[1].trim();
 					String placeId = items[2].trim();
-					String refId = items[3].trim();
+					String baseId = items[3].trim();
 					if (env.getCurrentScope().lookup(name) == null) {
-						UbiNetRef ref = env.newNetRef(location, placeId, refId);
+						UbiNetRef ref = env.newNetRef(location, placeId, baseId, name);
 						env.getCurrentScope().put(name, ref, Property.DONTDELETE);
 					}
 				}
@@ -84,12 +84,17 @@ public class Place {
 		}
 	}
 	
-	public String get(String refId) {
-		UbiObject obj = getRemoteRef(refId);
+	public String get(String baseId, int nameOrIndex, String name, int index) {
+		Scriptable base = getRemoteRef(baseId);
+		Scriptable obj = null;
+		if (nameOrIndex == UbiAbstractRef.REF_BY_NAME)
+			obj = base.get(name);
+		else
+			obj = base.get(index);
 		StringWriter sw = new StringWriter();
 		BufferedWriter writer = new BufferedWriter(sw);
 		try {
-			Marshaller.marshall(this, obj, writer, false);
+			Marshaller.marshall(this, obj, writer, false, null, -1, null, -1);
 		} catch (IOException e) {
 			e.printStackTrace();
 			return e.getLocalizedMessage();
@@ -97,30 +102,61 @@ public class Place {
 		return sw.toString();
 	}
 	
+	public String put(String baseId, int nameOrIndex, String name, int index, String encodedValue) {
+		Scriptable base = getRemoteRef(baseId);
+		StringReader sr = new StringReader(encodedValue);
+		BufferedReader reader = new BufferedReader(sr);
+		Scriptable obj;
+		try {
+			obj = Marshaller.unmarshall(this, reader);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return e.getLocalizedMessage();
+		}
+		if (nameOrIndex == UbiAbstractRef.REF_BY_NAME)
+			base.put(name, obj, Property.EMPTY);
+		else
+			base.put(index, obj, Property.EMPTY);
+		return "OK";
+	}
+	
 	private class DelegateImpl implements EvaluatorDelegate {
 
 		// TODO remote construct 도 구현하기.
-		public UbiObject delegateCall(UbiNetRef ref, UbiObject[] args) {
+		public Scriptable delegateCall(UbiNetRef ref, Scriptable[] args) {
 			return null;
 		}
 
 		public void delegateExecute(NativePlace place, String[] names,
-				UbiObject[] values, String code) {
+				Scriptable[] bases, String code) {
 			String freeVars = "";
-			for (int i = 0; i < values.length; i++) {
-				String refId = addRemoteRef(values[i]);
+			for (int i = 0; i < bases.length; i++) {
+				String baseId = addRemoteRef(bases[i]);
 				freeVars = freeVars +
-						names[i] + "," + location + "," + placeId + "," + refId + "\n";
+						names[i] + "," + location + "," + placeId + "," + baseId + "\n";
 			}
-			client.execute(place.getLocation(), place.getPlaceId(), freeVars, code);			
+			String result = client.execute(place.getLocation(), place.getPlaceId(), freeVars, code);			
 		}
 
-		public UbiObject delegateGet(UbiNetRef ref) {
-			String result = client.get(ref.getLocation(), ref.getPlaceId(), ref.getRefId());
+		public Scriptable delegateGet(UbiNetRef ref) {
+			// TODO get 할 때, primitive 면 값을 가져오고, 아니면 객체의 netRef를 가져오는게 맞는거 아닌가?
+			/*
+			 * 현재 상태의 get, put이 맞지 않는 사례. (아직 테스트가 안됨. 좀 더 기다릴 것.)
+			 * var x = new Array("a", "b", "c");
+			 * var p = new Place("...");
+			 * on (p) {
+			 *   println(x[1]); // "b" (x 배열의 shallow copy가 전송되어 옴.)
+			 *   x[1] = "z";
+			 *   println(x[1]); // "z" (x 배열의 shallow copy가 변경됨)
+			 * }
+			 * println(x[1]); // "b" (p 장소 내부에서만 변경이 일어나서, 원래 x[1]이 그대로 남아있음.
+			 */
+			String result = client.get(ref.getLocation(), ref.getPlaceId(), 
+					ref.getBaseId(), ref.getNameOrIndex(), ref.getName(), ref.getIndex());
 			StringReader sw = new StringReader(result);
 			BufferedReader reader = new BufferedReader(sw);
 			try {
-				UbiObject obj = Marshaller.unmarshall(Place.this, reader);
+				Scriptable obj = Marshaller.unmarshall(Place.this, reader);
 				return obj;
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -128,8 +164,19 @@ public class Place {
 			}
 		}
 
-		public void delegatePut(UbiNetRef ref, UbiObject value) {
-			
+		public void delegatePut(UbiNetRef ref, Scriptable value) {
+			// TODO put 할 때, value가 primitive 이면 값을 전달하고, 아니면 객체의 netRef를 전달하는게 맞는게 아닌가?
+			StringWriter sw = new StringWriter();
+			BufferedWriter writer = new BufferedWriter(sw);
+			try {
+				Marshaller.marshall(Place.this, value, writer, false, null, -1, null, -1);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			String encodedValue = sw.toString();
+			String result = client.put(ref.getLocation(), ref.getPlaceId(), 
+					ref.getBaseId(), ref.getNameOrIndex(), ref.getName(), ref.getIndex(), 
+					encodedValue);
 		}
 	}
 }

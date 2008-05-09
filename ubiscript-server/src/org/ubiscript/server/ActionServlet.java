@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.ubiscript.UbiAbstractRef;
+
 public class ActionServlet extends HttpServlet {
 	
 	private PlaceManager getPlaceManager(String location) {
@@ -58,14 +60,34 @@ public class ActionServlet extends HttpServlet {
 				String result = place.execute(freeVars, code);
 				out.print(result);
 			} else if (action.equals(UbiscriptHttpClient.Action_get)) {
-				String refId = req.getParameter(UbiscriptHttpClient.Param_refId);
-				String result = place.get(refId);
+				String baseId = req.getParameter(UbiscriptHttpClient.Param_baseId);
+				int nameOrIndex = Integer.parseInt(
+						req.getParameter(UbiscriptHttpClient.Param_nameOrIndex));
+				String name = null;
+				int index = -1;
+				if (nameOrIndex == UbiAbstractRef.REF_BY_NAME) {
+					name = req.getParameter(UbiscriptHttpClient.Param_name);
+				} else {
+					index = Integer.parseInt(req.getParameter(UbiscriptHttpClient.Param_index));
+				}
+				String result = place.get(baseId, nameOrIndex, name, index);
 				out.print(result);
 			} else if (action.equals(UbiscriptHttpClient.Action_put)) {
-				String refId = req.getParameter(UbiscriptHttpClient.Param_refId);
+				String baseId = req.getParameter(UbiscriptHttpClient.Param_baseId);
+				int nameOrIndex = Integer.parseInt(
+						req.getParameter(UbiscriptHttpClient.Param_nameOrIndex));
+				String name = null;
+				int index = -1;
+				if (nameOrIndex == UbiAbstractRef.REF_BY_NAME) {
+					name = req.getParameter(UbiscriptHttpClient.Param_name);
+				} else {
+					index = Integer.parseInt(req.getParameter(UbiscriptHttpClient.Param_index));
+				}
 				String value = req.getParameter(UbiscriptHttpClient.Param_value);
+				String result = place.put(baseId, nameOrIndex, name, index, value);
+				out.print(result);
 			} else if (action.equals(UbiscriptHttpClient.Action_call)) {
-				String refId = req.getParameter(UbiscriptHttpClient.Param_refId);
+				String baseId = req.getParameter(UbiscriptHttpClient.Param_baseId);
 				String args = req.getParameter(UbiscriptHttpClient.Param_args);
 			} else {
 				out.println("Unsupported Action: " + action);
