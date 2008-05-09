@@ -60,13 +60,13 @@ interface InterpreterDelegate {
  */
 public class Interpreter {
 
-	private Environment env;
+	private Env env;
 	private Evaluator evaluator;
 
 	public Interpreter() {
 		evaluator = new Evaluator();
 		try {
-			env = new Environment();
+			env = new Env();
 		} catch (UbiException e) {
 			e.printStackTrace();
 		}
@@ -84,7 +84,7 @@ public class Interpreter {
 		return env.getRootScope().get(name, start);
 	}
 	
-	public Environment getEnv() {
+	public Env getEnv() {
 		return env;
 	}
 	

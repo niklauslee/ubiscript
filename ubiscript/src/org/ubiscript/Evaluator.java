@@ -69,7 +69,7 @@ public class Evaluator {
 		}
 	}
 	
-	public Scriptable evaluateExpression(Environment env, String code) throws UbiException {
+	public Scriptable evaluateExpression(Env env, String code) throws UbiException {
 		UbiscriptLexer lex = new UbiscriptLexer(new ANTLRStringStream(code));
 		CommonTokenStream tokens = new CommonTokenStream(lex);
 		UbiscriptParser parser = new UbiscriptParser(tokens);
@@ -84,7 +84,7 @@ public class Evaluator {
 		return null;
 	}
 	
-	public void evaluateStatement(Environment env, String code) throws UbiException {
+	public void evaluateStatement(Env env, String code) throws UbiException {
 		UbiscriptLexer lex = new UbiscriptLexer(new ANTLRStringStream(code));
 		CommonTokenStream tokens = new CommonTokenStream(lex);
 		UbiscriptParser parser = new UbiscriptParser(tokens);
@@ -98,7 +98,7 @@ public class Evaluator {
 		}
 	}
 	
-	public Scriptable evaluateExpression(Environment env, Tree t) throws UbiException {
+	public Scriptable evaluateExpression(Env env, Tree t) throws UbiException {
 		currentNode = t;
 		Scriptable o1, o2;
 		Scriptable[] args;
@@ -266,7 +266,7 @@ public class Evaluator {
 		}
 	}
 	
-	public void evaluateStatement(Environment env, Tree t) throws UbiException {
+	public void evaluateStatement(Env env, Tree t) throws UbiException {
 		currentNode = t;
 		Scriptable o1;
 		String id;
@@ -320,11 +320,11 @@ public class Evaluator {
 			t3 = t.getChild(2); // statement
 			o1 = getValue(evaluateExpression(env, t2));
 			id = t1.getText();
-			if (o1 instanceof NativeArray) {
+			if (o1 instanceof UbiArray) {
 				// enumerate elements in array
-				NativeArray array = (NativeArray) o1;
+				UbiArray array = (UbiArray) o1;
 				try {
-					for (int i = 0; i < array.getLength(); i++) {
+					for (int i = 0; i < array.getSize(); i++) {
 						try {
 							env.getCurrentScope().put(id, array.get(i), Property.EMPTY);
 							evaluateStatement(env, t3);

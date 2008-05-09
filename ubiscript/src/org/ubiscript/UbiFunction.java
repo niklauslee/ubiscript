@@ -33,7 +33,7 @@ public class UbiFunction extends ScriptableObject {
 		return "function(" + s + ")";
 	}
 
-	public Scriptable call(Environment env, Evaluator eval, Scriptable[] args, Scriptable thisObj) throws UbiException {
+	public Scriptable call(Env env, Evaluator eval, Scriptable[] args, Scriptable thisObj) throws UbiException {
 		UbiObject activation = env.newObject();
 		env.pushScope(activation);
 		for (int i = 0; i < parameters.length; i++) {
@@ -55,7 +55,7 @@ public class UbiFunction extends ScriptableObject {
 		return env.getUndefined();
 	}
 	
-	public Scriptable construct(Environment env, Evaluator eval, Scriptable[] args) throws UbiException {
+	public Scriptable construct(Env env, Evaluator eval, Scriptable[] args) throws UbiException {
 		Scriptable thisObj = env.newObject(); 
 		call(env, eval, args, thisObj);
 		return thisObj;

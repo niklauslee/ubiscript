@@ -6,16 +6,16 @@ import java.lang.reflect.Method;
 import java.lang.reflect.InvocationTargetException;
 
 @SuppressWarnings("unchecked")
-public class NativeJavaObject extends NativeObject {
+public class NativeJavaObject extends NativeScriptable {
 
 	private Object javaObject;
 	
-	public NativeJavaObject(Scriptable prototype, Environment env, Object javaObject) {
+	public NativeJavaObject(Scriptable prototype, Env env, Object javaObject) {
 		super(prototype, env);
 		this.javaObject = javaObject;
 	}
 
-	public static void init(Environment env) {
+	public static void init(Env env) {
 		Scriptable obj = new NativeJavaObject(null, env, null);
 		obj.put(Constants.Id_prototype, obj, Property.CONST);
 		obj.put(Constants.Id_constructor, obj, Property.CONST);
@@ -36,7 +36,7 @@ public class NativeJavaObject extends NativeObject {
 			} catch (SecurityException e) {
 				e.printStackTrace();
 			} catch (NoSuchFieldException e) {
-				return new NativeObjectFunction(this, name);
+				return new NativeScriptableFunction(this, name);
 			} catch (IllegalArgumentException e) {
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {
@@ -60,7 +60,7 @@ public class NativeJavaObject extends NativeObject {
 		return false;
 	}
 
-	public Scriptable construct(Environment env, Evaluator eval, Scriptable[] args) throws UbiException {
+	public Scriptable construct(Env env, Evaluator eval, Scriptable[] args) throws UbiException {
 		String className = null;
 		Object[] paramObjects = null;
 		Class[] paramTypes = null;
@@ -111,7 +111,7 @@ public class NativeJavaObject extends NativeObject {
 		return ubiObject;
 	}
 
-	public Scriptable invoke(Environment env, Evaluator eval, String name, Scriptable[] args, Scriptable thisObject) throws UbiException {
+	public Scriptable invoke(Env env, Evaluator eval, String name, Scriptable[] args, Scriptable thisObject) throws UbiException {
 		Class clazz = javaObject.getClass();
 		Object[] paramObjects = new Object[0];
 		Class[] paramTypes = new Class[0];
@@ -184,7 +184,7 @@ public class NativeJavaObject extends NativeObject {
 		}
 	}
 	
-	public static Scriptable JavaObjectToUbiObject(Environment env, Object o) {
+	public static Scriptable JavaObjectToUbiObject(Env env, Object o) {
 		if (o == null) {
 			return env.getNull();
 		} else if (o instanceof Integer) {
