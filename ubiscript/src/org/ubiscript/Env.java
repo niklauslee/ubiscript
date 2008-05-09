@@ -2,7 +2,6 @@ package org.ubiscript;
 
 import org.antlr.runtime.tree.*;
 
-// TODO NativeJavaObject 구현하기
 // TODO NativeJavaClass 구현하기
 // TODO NativeActiveXObject 구현하기
 // TODO NativeXMLObject 구현하기
@@ -12,12 +11,13 @@ public class Env {
 	
 	private Scriptable currentScope;
 	private Scriptable rootScope;
+	private ProxyDelegate proxyDelegate;
 
-	public Env() throws UbiException {
+	public Env() {
 		initialize();
 	}
 
-	private void initialize() throws UbiException {
+	private void initialize() {
 		// native objects
 		NativeGlobal.init(this);
 		NativeObject.init(this);
@@ -58,6 +58,14 @@ public class Env {
 		}
 	}
 	
+	public void setProxyDelegate(ProxyDelegate proxyDelegate) {
+		this.proxyDelegate = proxyDelegate;
+	}
+	
+	public ProxyDelegate getProxyDelegate() {
+		return proxyDelegate;
+	}
+	
 	public UbiObject newObject() {
 		UbiObject o = new UbiObject(rootScope.get(Constants.Id_Object, rootScope));
 		return o;
@@ -85,13 +93,13 @@ public class Env {
 		return o;
 	}
 	
-	public NativeArray newArray(int size, Scriptable[] values) {
-		NativeArray o = new NativeArray(rootScope.get(Constants.Id_Array, rootScope), this, size, values); 
+	public UbiArray newArray(int size, Scriptable[] values) {
+		UbiArray o = new UbiArray(rootScope.get(Constants.Id_Array, rootScope), size, values); 
 		return o;
 	}
 	
-	public NativePlace newPlace(String location, String placeId) {
-		NativePlace o = new NativePlace(rootScope.get(Constants.Id_Place, rootScope), this, location, placeId);
+	public UbiPlace newPlace(String location, String placeId) {
+		UbiPlace o = new UbiPlace(rootScope.get(Constants.Id_Place, rootScope), location, placeId);
 		return o;
 	}
 	
@@ -114,6 +122,11 @@ public class Env {
 	
 	public UbiRef newRef(Scriptable base, int index) {
 		UbiRef o = new UbiRef(base, index); 
+		return o;
+	}
+	
+	public ObjectProxy newObjectProxy(RemoteRef remoteRef) {
+		ObjectProxy o = new ObjectProxy(remoteRef, proxyDelegate);
 		return o;
 	}
 	
