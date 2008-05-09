@@ -5,8 +5,10 @@ import org.ubiscript.*;
 
 public class Marshaller {
 
-	public static void marshall(Place place, UbiObject obj,
-			BufferedWriter writer,	boolean asReference) throws IOException {
+	public static void marshall(Place place, Scriptable obj, 
+			BufferedWriter writer, boolean asReference, 
+			Scriptable base, int nameOrIndex, String name, int index) 
+			throws IOException {
 		if (asReference) {
 			writer.write(Constants.Id_NetRef);
 			writer.newLine();
@@ -14,9 +16,18 @@ public class Marshaller {
 			writer.newLine();
 			writer.write(place.getPlaceId());
 			writer.newLine();
-			String refId = place.addRemoteRef(obj);
-			writer.write(refId);
+			String baseId = place.addRemoteRef(base);
+			writer.write(baseId);
 			writer.newLine();
+			writer.write(Integer.toString(nameOrIndex));
+			writer.newLine();
+			if (nameOrIndex == UbiAbstractRef.REF_BY_NAME) {
+				writer.write(name);
+				writer.newLine();
+			} else { // REF_BY_INDEX
+				writer.write(Integer.toString(index));
+				writer.newLine();
+			}
 			writer.flush();
 		} else {
 			if (obj instanceof UbiNumber) {
@@ -55,7 +66,8 @@ public class Marshaller {
 				writer.write(Integer.toString(arr.getLength()));
 				writer.newLine();
 				for (int i = 0; i < arr.getLength(); i++)
-					marshall(place, arr.get(i), writer, true);
+					marshall(place, null, writer, true, 
+							arr, UbiAbstractRef.REF_BY_INDEX, null, i);
 				writer.flush();
 			} else if (obj instanceof NativePlace) {
 				NativePlace p = (NativePlace) obj;
@@ -71,7 +83,7 @@ public class Marshaller {
 				writer.write(obj.getClassName());
 				writer.newLine();
 				writer.flush();
-			} else if (obj instanceof UbiObject) {
+			} else if (obj instanceof Scriptable) {
 				writer.write(obj.getClassName());
 				writer.newLine();
 				Property[] props = obj.getProperties();
@@ -82,22 +94,30 @@ public class Marshaller {
 					writer.newLine();
 					writer.write(Integer.toString(p.getAttribute()));
 					writer.newLine();
-					marshall(place, p.getValue(), writer, true);
+					marshall(place, null, writer, true, 
+							obj, UbiAbstractRef.REF_BY_NAME, p.getName(), -1);
 				}
 				writer.flush();
 			}
 		}
 	}
 	
-	public static UbiObject unmarshall(Place place, BufferedReader reader) 
+	public static Scriptable unmarshall(Place place, BufferedReader reader) 
 			throws IOException {
 		Environment env = place.getInterpreter().getEnv();
 		String token = reader.readLine().trim();
 		if (token.equals(Constants.Id_NetRef)) {
 			String location = reader.readLine().trim();
 			String placeId = reader.readLine().trim();
-			String refId = reader.readLine().trim();
-			return env.newNetRef(location, placeId, refId);
+			String baseId = reader.readLine().trim();
+			int nameOrIndex = Integer.parseInt(reader.readLine().trim());
+			if (nameOrIndex == UbiAbstractRef.REF_BY_NAME) {
+				String name = reader.readLine().trim();
+				return env.newNetRef(location, placeId, baseId, name);
+			} else { // REF_BY_INDEX
+				int index = Integer.parseInt(reader.readLine().trim());
+				return env.newNetRef(location, placeId, baseId, index);
+			}
 		} else if (token.equals(Constants.Id_Number)) {
 			double n = Double.parseDouble(reader.readLine().trim());
 			return env.newNumber(n);
@@ -113,7 +133,7 @@ public class Marshaller {
 			return env.getUndefined();
 		} else if (token.equals(Constants.Id_Array)) {
 			int size = Integer.parseInt(reader.readLine().trim());
-			UbiObject[] values = new UbiObject[size];
+			Scriptable[] values = new Scriptable[size];
 			for (int i = 0; i < size; i++)
 				values[i] = unmarshall(place, reader);
 			return env.newArray(size, values);
@@ -124,12 +144,12 @@ public class Marshaller {
 		} else if (token.equals(Constants.Id_Function)) {
 			// TODO Function은 어떻게 unmarshall 할 것인가?
 		} else if (token.equals(Constants.Id_Object)) {
-			UbiObject obj = env.newObject();
+			Scriptable obj = env.newObject();
 			int size = Integer.parseInt(reader.readLine().trim());
 			for (int i = 0; i < size; i++) {
 				String name = reader.readLine().trim();
 				int attribute = Integer.parseInt(reader.readLine().trim());
-				UbiObject value = unmarshall(place, reader);
+				Scriptable value = unmarshall(place, reader);
 				obj.put(name, value, attribute);
 			}
 			return obj;
