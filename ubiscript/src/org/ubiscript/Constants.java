@@ -17,5 +17,7 @@ public class Constants {
 			Id_prototype = "prototype",
 			Id_constructor = "constructor",
 			Id_global = "global",
-			Id_undefined = "undefined";
+			Id_null = "null",
+			Id_undefined = "undefined",
+			Id_this = "this";
 }

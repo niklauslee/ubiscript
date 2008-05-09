@@ -5,23 +5,23 @@ public class NativeGlobal extends NativeObject {
 	private static String
 			Id_println = "println";
 	
-	public NativeGlobal(UbiObject prototype, Environment env) {
+	public NativeGlobal(Scriptable prototype, Environment env) {
 		super(prototype, env);
 		Ids.add(Id_println);
 	}
 
 	public static void init(Environment env) {
-		UbiObject obj = new NativeGlobal(null, env);
+		Scriptable obj = new NativeGlobal(null, env);
 		env.setRootScope(obj);
 		env.getRootScope().put(Constants.Id_global, obj, Property.PREDEFINED);
 		env.getRootScope().put(Constants.Id_undefined, env.getUndefined(), Property.PREDEFINED);
 	}
 
-	public UbiObject construct(Environment env, Evaluator eval, UbiObject[] args) throws UbiException {
+	public Scriptable construct(Environment env, Evaluator eval, Scriptable[] args) throws UbiException {
 		return env.getUndefined();
 	}
 
-	public UbiObject invoke(Environment env, Evaluator eval, String name, UbiObject[] args, UbiObject thisObject) throws UbiException {
+	public Scriptable invoke(Environment env, Evaluator eval, String name, Scriptable[] args, Scriptable thisObject) throws UbiException {
 		if (name.equals(Id_println)) {
 			System.out.println(args[0].toString());
 		}
