@@ -11,6 +11,7 @@ public class Env {
 	
 	private Scriptable currentScope;
 	private Scriptable rootScope;
+	private Scriptable globalObject;
 	private ProxyDelegate proxyDelegate;
 
 	public Env() {
@@ -56,6 +57,29 @@ public class Env {
 		if (currentScope.getParentScope() != null) {
 			currentScope = currentScope.getParentScope();
 		}
+	}
+	
+	public void pushRootScope(Scriptable scope) {
+		rootScope.setParentScope(scope);
+		rootScope = scope;
+	}
+	
+	public void popRootScope() {
+		Scriptable scope = currentScope;
+		if (scope != rootScope) {
+			while (scope.getParentScope() == rootScope)
+				scope = scope.getParentScope();
+		}
+		rootScope = scope;
+		rootScope.setParentScope(null);
+	}
+	
+	public void setGlobalObject(Scriptable obj) {
+		globalObject = obj;
+	}
+	
+	public Scriptable getGlobalObject() {
+		return globalObject;
 	}
 	
 	public void setProxyDelegate(ProxyDelegate proxyDelegate) {

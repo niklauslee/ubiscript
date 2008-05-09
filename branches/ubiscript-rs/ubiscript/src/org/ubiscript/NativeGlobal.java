@@ -13,6 +13,7 @@ public class NativeGlobal extends NativeScriptable {
 	public static void init(Env env) {
 		Scriptable obj = new NativeGlobal(null, env);
 		env.setRootScope(obj);
+		env.setGlobalObject(obj);
 		env.getRootScope().put(Constants.Id_global, obj, Property.PREDEFINED);
 		env.getRootScope().put(Constants.Id_undefined, env.getUndefined(), Property.PREDEFINED);
 	}
