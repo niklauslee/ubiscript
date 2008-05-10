@@ -30,13 +30,11 @@ public class UbiscriptHttpClient {
 			Action_call = "call",
 			Action_construct = "construct";
 
-	private HttpClient client;
-	
 	public UbiscriptHttpClient() {
-		client = new HttpClient();
 	}
 	
 	public String execute(UbiPlace place, String encodedScope, String code) {
+		HttpClient client = new HttpClient();
 		PostMethod post = new PostMethod(place.getLocation());
 		post.addParameter(Param_action, Action_execute);
 		post.addParameter(Param_placeId, place.getPlaceId());
@@ -60,6 +58,7 @@ public class UbiscriptHttpClient {
 	}
 	
 	public String get(RemoteRef remoteRef, String name) {
+		HttpClient client = new HttpClient();
 		PostMethod post = new PostMethod(remoteRef.getLocation());
 		post.addParameter(Param_action, Action_getByName);
 		post.addParameter(Param_placeId, remoteRef.getPlaceId());
@@ -83,6 +82,7 @@ public class UbiscriptHttpClient {
 	}
 	
 	public String put(RemoteRef remoteRef, String name, String encodedObject) {
+		HttpClient client = new HttpClient();
 		PostMethod post = new PostMethod(remoteRef.getLocation());
 		post.addParameter(Param_action, Action_putByName);
 		post.addParameter(Param_placeId, remoteRef.getPlaceId());
@@ -107,6 +107,7 @@ public class UbiscriptHttpClient {
 	}
 	
 	public String get(RemoteRef remoteRef, int index) {
+		HttpClient client = new HttpClient();
 		PostMethod post = new PostMethod(remoteRef.getLocation());
 		post.addParameter(Param_action, Action_getByIndex);
 		post.addParameter(Param_placeId, remoteRef.getPlaceId());
@@ -130,6 +131,7 @@ public class UbiscriptHttpClient {
 	}
 
 	public String put(RemoteRef remoteRef, int index, String encodedObject) {
+		HttpClient client = new HttpClient();
 		PostMethod post = new PostMethod(remoteRef.getLocation());
 		post.addParameter(Param_action, Action_putByIndex);
 		post.addParameter(Param_placeId, remoteRef.getPlaceId());
@@ -154,6 +156,7 @@ public class UbiscriptHttpClient {
 	}
 	
 	public String call(RemoteRef remoteRef, int argCount, String encodedArgs, String encodedThisObj) {
+		HttpClient client = new HttpClient();
 		PostMethod post = new PostMethod(remoteRef.getLocation());
 		post.addParameter(Param_action, Action_call);
 		post.addParameter(Param_placeId, remoteRef.getPlaceId());
@@ -181,6 +184,7 @@ public class UbiscriptHttpClient {
 	}
 
 	public String construct(RemoteRef remoteRef, int argCount, String encodedArgs) {
+		HttpClient client = new HttpClient();
 		PostMethod post = new PostMethod(remoteRef.getLocation());
 		post.addParameter(Param_action, Action_construct);
 		post.addParameter(Param_placeId, remoteRef.getPlaceId());
