@@ -9,8 +9,8 @@
 <body>
 
 <form action="action" method="post">
-<input type="hidden" name="action" value="EXEC">
-<textarea name="code" style=' width: 605px; height: 171px; font-size: 12px; font-family: "Courier New", Courier'></textarea>
+<input type="hidden" name="action" value="execute">
+<textarea name="code" style=' width: 605px; height: 282px; font-size: 12px; font-family: "Courier New", Courier'></textarea>
 <input type="submit" value="Execute">
 </form>
 </body>
