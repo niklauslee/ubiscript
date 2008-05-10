@@ -71,7 +71,10 @@ public class ActionServlet extends HttpServlet {
 				StringWriter sw = new StringWriter();
 				BufferedWriter writer = new BufferedWriter(sw);
 				Marshaller.marshall(place, obj, writer);
-				out.print(sw.toString());
+				String value = sw.toString();
+				writer.close();
+				sw.close();
+				out.print(value);
 			} else if (action.equals(UbiscriptHttpClient.Action_putByName)) {
 				long exportId = Long.parseLong(req.getParameter(UbiscriptHttpClient.Param_exportId));
 				String name = req.getParameter(UbiscriptHttpClient.Param_name);
@@ -80,6 +83,8 @@ public class ActionServlet extends HttpServlet {
 				StringReader sr = new StringReader(value);
 				BufferedReader reader = new BufferedReader(sr);
 				Scriptable obj = Marshaller.unmarshall(place, reader);
+				reader.close();
+				sr.close();
 				base.put(name, obj, Property.EMPTY);
 				out.println("PUT BY NAME - OK");
 			} else if (action.equals(UbiscriptHttpClient.Action_getByIndex)) {
@@ -90,7 +95,10 @@ public class ActionServlet extends HttpServlet {
 				StringWriter sw = new StringWriter();
 				BufferedWriter writer = new BufferedWriter(sw);
 				Marshaller.marshall(place, obj, writer);
-				out.print(sw.toString());
+				String value = sw.toString();
+				writer.close();
+				sw.close();
+				out.print(value);
 			} else if (action.equals(UbiscriptHttpClient.Action_putByIndex)) {
 				long exportId = Long.parseLong(req.getParameter(UbiscriptHttpClient.Param_exportId));
 				int index = Integer.parseInt(req.getParameter(UbiscriptHttpClient.Param_index));
@@ -99,6 +107,8 @@ public class ActionServlet extends HttpServlet {
 				StringReader sr = new StringReader(value);
 				BufferedReader reader = new BufferedReader(sr);
 				Scriptable obj = Marshaller.unmarshall(place, reader);
+				reader.close();
+				sr.close();
 				base.put(index, obj);
 				out.println("PUT BY INDEX - OK");
 			} else if (action.equals(UbiscriptHttpClient.Action_call)) {
@@ -132,7 +142,10 @@ public class ActionServlet extends HttpServlet {
 					StringWriter sw = new StringWriter();
 					BufferedWriter writer = new BufferedWriter(sw);
 					Marshaller.marshall(place, obj, writer);
-					out.print(sw.toString());
+					String result = sw.toString();
+					writer.close();
+					sw.close();
+					out.print(result);
 				} catch (UbiException e) {
 					e.printStackTrace();
 					out.print(e.getLocalizedMessage());
@@ -169,6 +182,7 @@ public class ActionServlet extends HttpServlet {
 		} else {
 			out.println("Action is not specified.");
 		}
+		out.close();
 	}
 
 }
