@@ -9,8 +9,6 @@ import java.util.*;
 
 // TODO "."와 "()"의 모호성 문제 (".", "[]" 이 "()" 보다 우선순위에서 높아야할듯)
 // TODO 전반적인 Ubiscript 런타임  오류 처리하기.
-// TODO "typeof" 연산자 구문에 추가하고 구현하기. (Ref. ECMAScript Spec: 46 page)
-// TODO "delete" 연산자 구현하기.
 // TODO try.catch.finally 구문 구현하기.
 
 /**
