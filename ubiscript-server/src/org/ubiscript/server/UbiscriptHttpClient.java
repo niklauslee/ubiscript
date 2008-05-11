@@ -25,6 +25,7 @@ public class UbiscriptHttpClient {
 			Action_execute = "execute",
 			Action_getByName = "getByName",
 			Action_putByName = "putByName",
+			Action_delete = "delete",
 			Action_getByIndex = "getByIndex",
 			Action_putByIndex = "putByIndex",
 			Action_call = "call",
@@ -104,6 +105,10 @@ public class UbiscriptHttpClient {
 		} finally {
 			post.releaseConnection();
 		}
+	}
+	
+	public String delete(RemoteRef remoteRef, String name) {
+		return null;
 	}
 	
 	public String get(RemoteRef remoteRef, int index) {

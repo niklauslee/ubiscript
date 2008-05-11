@@ -87,6 +87,8 @@ public class ActionServlet extends HttpServlet {
 				sr.close();
 				base.put(name, obj, Property.EMPTY);
 				out.println("PUT BY NAME - OK");
+			} else if (action.equals(UbiscriptHttpClient.Action_delete)) {
+				// ...
 			} else if (action.equals(UbiscriptHttpClient.Action_getByIndex)) {
 				long exportId = Long.parseLong(req.getParameter(UbiscriptHttpClient.Param_exportId));
 				int index = Integer.parseInt(req.getParameter(UbiscriptHttpClient.Param_index));
