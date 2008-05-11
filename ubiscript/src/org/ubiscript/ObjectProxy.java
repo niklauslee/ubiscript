@@ -2,30 +2,36 @@ package org.ubiscript;
 
 public class ObjectProxy extends ScriptableObject {
 
+	private String className;
 	private RemoteRef remoteRef;
 	private ProxyDelegate proxyDelegate;
 	
-	public ObjectProxy(RemoteRef remoteRef, ProxyDelegate proxyDelegate) {
+	public ObjectProxy(String className, RemoteRef remoteRef, 
+			ProxyDelegate proxyDelegate) {
 		super(null);
+		this.className = className;
 		this.remoteRef = remoteRef;
 		this.proxyDelegate = proxyDelegate;
 	}
 	
 	public String getClassName() {
-		// TODO implement this.
-		return null;
-	}
-	
-	public boolean has(String name) {
-		// TODO implement this.
-		return false;
+		return className;
 	}
 
-	public Scriptable get(String name) {
+	public RemoteRef getRemoteRef() {
+		return remoteRef;
+	}
+	
+	public boolean has(String name, Scriptable start) {
+		// TODO implement this.
+		return true;
+	}
+
+	public Scriptable get(String name, Scriptable start) {
 		return proxyDelegate.get(remoteRef, name);
 	}
 	
-	public void put(String name, Scriptable obj) {
+	public void put(String name, Scriptable obj, int attribute) {
 		proxyDelegate.put(remoteRef, name, obj);
 	}
 
@@ -53,7 +59,7 @@ public class ObjectProxy extends ScriptableObject {
 	
 	public Scriptable call(Env env, Evaluator eval, Scriptable[] args,
 			Scriptable thisObj) throws UbiException {
-		return proxyDelegate.call(remoteRef, args);
+		return proxyDelegate.call(remoteRef, args, thisObj);
 	}
 
 	public Scriptable construct(Env env, Evaluator eval, Scriptable[] args)

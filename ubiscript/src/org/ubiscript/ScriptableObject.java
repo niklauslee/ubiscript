@@ -15,7 +15,7 @@ public class ScriptableObject implements Scriptable {
 	}
 	
 	public String getClassName() {
-		return null;
+		return Constants.Id_Object;
 	}
 
 	public void setPrototype(Scriptable prototype) {
@@ -97,7 +97,7 @@ public class ScriptableObject implements Scriptable {
 				return true;
 			}
 		}
-		return false;
+		return true;
 	}
 
 	public String[] getNames() {

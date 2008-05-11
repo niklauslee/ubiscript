@@ -11,7 +11,7 @@ public interface ProxyDelegate {
 	public void put(RemoteRef remoteRef, int index, Scriptable obj);
 
 	// for Function
-	public Scriptable call(RemoteRef remoteRef, Scriptable[] args);
+	public Scriptable call(RemoteRef remoteRef, Scriptable[] args, Scriptable thisObj);
 	public Scriptable construct(RemoteRef remoteRef, Scriptable[] args);
 	
 }

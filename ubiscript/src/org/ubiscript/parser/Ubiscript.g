@@ -31,6 +31,8 @@ tokens {
 	UPLUS;
 	NEW;
 	ARRAY;
+	DELETE;
+	TYPEOF;
 }
 
 @header {
@@ -203,6 +205,10 @@ multiplicativeExpression
 
 unaryExpression
 	:	postfixExpression
+	|	'delete' unaryExpression
+		-> ^(DELETE unaryExpression)
+	|	'typeof' unaryExpression
+		-> ^(TYPEOF unaryExpression)
 	|	MINUS unaryExpression
 		-> ^(UMINUS unaryExpression)
 	|	PLUS unaryExpression
