@@ -12,7 +12,7 @@ public class Constants {
 			Id_Function = "Function",
 			Id_Array = "Array",
 			Id_Place = "Place",
-			Id_NetRef = "NetRef",
+			Id_ObjectProxy = "ObjectProxy",
 			Id_JavaObject = "JavaObject",
 			Id_prototype = "prototype",
 			Id_constructor = "constructor",

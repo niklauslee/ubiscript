@@ -10,8 +10,8 @@ import java.util.*;
 // TODO "."와 "()"의 모호성 문제 (".", "[]" 이 "()" 보다 우선순위에서 높아야할듯)
 // TODO 전반적인 Ubiscript 런타임  오류 처리하기.
 // TODO "typeof" 연산자 구문에 추가하고 구현하기. (Ref. ECMAScript Spec: 46 page)
+// TODO "delete" 연산자 구현하기.
 // TODO try.catch.finally 구문 구현하기.
-// TODO putValue에서 NetRef일 때 문제가 있을 가능성이 있음. 확인필요.
 
 /**
  * An Evaluator for Ubiscript Code.
@@ -177,6 +177,20 @@ public class Evaluator {
 			}
 			// call constructor with arguments
 			return o1.construct(env, this, args);
+		case UbiscriptParser.DELETE:
+			o1 = evaluateExpression(env, t.getChild(0));
+			if (o1 instanceof UbiRef) {
+				UbiRef ref = (UbiRef) o1;
+				if (ref.getBase() != null)
+					return env.newBoolean(ref.getBase().delete(ref.getName()));
+			}
+			return env.newBoolean(true);
+		case UbiscriptParser.TYPEOF:
+			o1 = getValue(evaluateExpression(env, t.getChild(0)));
+			if (o1 instanceof UbiNull)
+				return env.newString(Constants.Id_Object.toLowerCase());
+			else
+				return env.newString(o1.getClassName().toLowerCase());
 		case UbiscriptParser.UMINUS:
 			o1 = getValue(evaluateExpression(env, t.getChild(0)));
 			return env.newNumber(-o1.toInt());
@@ -398,7 +412,7 @@ public class Evaluator {
 			t1 = t.getChild(0); // expression
 			t2 = t.getChild(1); // block
 			o1 = getValue(evaluateExpression(env, t1));
-			if (!(o1 instanceof NativePlace))
+			if (!(o1 instanceof UbiPlace))
 				UbiError.throwRuntimeError(t1.getLine(), t1.getCharPositionInLine(), 
 						Messages.getString("error.runtime.type.place"));
 			UbiPlace p = (UbiPlace) o1;

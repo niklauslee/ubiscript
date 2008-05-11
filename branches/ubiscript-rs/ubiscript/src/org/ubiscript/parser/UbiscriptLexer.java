@@ -1,4 +1,4 @@
-// $ANTLR 3.0 C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g 2008-04-29 23:34:58
+// $ANTLR 3.0.1 C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g 2008-05-11 14:25:43
 
 package org.ubiscript.parser;
 
@@ -9,142 +9,110 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class UbiscriptLexer extends Lexer {
+    public static final int LT=44;
+    public static final int EXPONENT=64;
+    public static final int WHILE=15;
+    public static final int LETTER=62;
+    public static final int NEW=28;
+    public static final int NOT=53;
+    public static final int EOF=-1;
+    public static final int BREAK=17;
+    public static final int UPD=13;
+    public static final int RETURN=16;
+    public static final int ARGS=21;
+    public static final int MINUS2=54;
+    public static final int EQ=33;
+    public static final int VARDEF=6;
+    public static final int ARRAY=29;
+    public static final int LINE_COMMENT=66;
+    public static final int MULTEQ=36;
+    public static final int NULL=57;
+    public static final int ON=19;
+    public static final int DELETE=30;
+    public static final int MULT=50;
+    public static final int WS=67;
+    public static final int TYPEOF=31;
+    public static final int FUNDEF=7;
+    public static final int OR=40;
+    public static final int GT=46;
+    public static final int FIELD=23;
+    public static final int FOREACH=14;
+    public static final int CALL=20;
+    public static final int FUN=24;
+    public static final int INIT=10;
+    public static final int MINUSEQ=35;
     public static final int T75=75;
     public static final int T76=76;
     public static final int T73=73;
     public static final int T74=74;
-    public static final int EXPONENT=62;
-    public static final int LT=42;
     public static final int T79=79;
     public static final int T77=77;
     public static final int T78=78;
-    public static final int WHILE=15;
-    public static final int LETTER=60;
-    public static final int DIVEQ=35;
-    public static final int ESC=63;
-    public static final int LTEQ=43;
-    public static final int NEW=28;
+    public static final int ESC=65;
+    public static final int DIVEQ=37;
+    public static final int LTEQ=45;
     public static final int FOR=9;
-    public static final int FLOAT=58;
-    public static final int NOT=51;
-    public static final int AND=39;
-    public static final int ID=54;
-    public static final int EOF=-1;
-    public static final int BREAK=17;
+    public static final int FLOAT=60;
+    public static final int ID=56;
+    public static final int AND=41;
+    public static final int PLUSEQ=34;
     public static final int T72=72;
-    public static final int PLUSEQ=32;
     public static final int T71=71;
-    public static final int T70=70;
-    public static final int UPD=13;
     public static final int IF=8;
+    public static final int T70=70;
     public static final int INDEX=22;
-    public static final int T66=66;
-    public static final int BOOLEAN=56;
     public static final int EXPR=4;
-    public static final int T67=67;
+    public static final int BOOLEAN=58;
     public static final int T68=68;
     public static final int T69=69;
     public static final int CONTINUE=18;
-    public static final int COMMA=30;
-    public static final int RETURN=16;
-    public static final int ARGS=21;
-    public static final int PLUS=46;
-    public static final int DIGIT=61;
-    public static final int MINUS2=52;
-    public static final int EQ=31;
-    public static final int VARDEF=6;
-    public static final int PLUS2=53;
-    public static final int ARRAY=29;
+    public static final int COMMA=32;
+    public static final int PLUS=48;
+    public static final int DIGIT=63;
+    public static final int PLUS2=55;
     public static final int PARAMS=25;
-    public static final int INTEGER=57;
-    public static final int PERCENT=50;
-    public static final int LINE_COMMENT=64;
+    public static final int INTEGER=59;
+    public static final int PERCENT=52;
     public static final int UPLUS=27;
     public static final int VARS=11;
-    public static final int MULTEQ=34;
-    public static final int NULL=55;
-    public static final int ON=19;
     public static final int UMINUS=26;
-    public static final int GTEQ=45;
-    public static final int MINUS=47;
-    public static final int MULT=48;
-    public static final int Tokens=88;
-    public static final int EQ2=40;
-    public static final int NOTEQ=41;
+    public static final int MINUS=49;
+    public static final int GTEQ=47;
+    public static final int Tokens=92;
+    public static final int T91=91;
+    public static final int T90=90;
+    public static final int EQ2=42;
+    public static final int T88=88;
+    public static final int T89=89;
+    public static final int NOTEQ=43;
     public static final int T84=84;
-    public static final int WS=65;
     public static final int T85=85;
+    public static final int QUESTION=39;
     public static final int T86=86;
-    public static final int QUESTION=37;
+    public static final int PERCENTEQ=38;
     public static final int T87=87;
-    public static final int PERCENTEQ=36;
-    public static final int FUNDEF=7;
     public static final int BLOCK=5;
-    public static final int OR=38;
-    public static final int GT=44;
-    public static final int FIELD=23;
-    public static final int FOREACH=14;
-    public static final int CALL=20;
-    public static final int DIV=49;
+    public static final int DIV=51;
     public static final int T81=81;
-    public static final int FUN=24;
-    public static final int T80=80;
     public static final int COND=12;
+    public static final int T80=80;
     public static final int T83=83;
-    public static final int INIT=10;
     public static final int T82=82;
-    public static final int STRING=59;
-    public static final int MINUSEQ=33;
+    public static final int STRING=61;
     public UbiscriptLexer() {;} 
     public UbiscriptLexer(CharStream input) {
         super(input);
     }
     public String getGrammarFileName() { return "C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g"; }
 
-    // $ANTLR start T66
-    public final void mT66() throws RecognitionException {
-        try {
-            int _type = T66;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:6:5: ( ';' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:6:7: ';'
-            {
-            match(';'); 
-
-            }
-
-            this.type = _type;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end T66
-
-    // $ANTLR start T67
-    public final void mT67() throws RecognitionException {
-        try {
-            int _type = T67;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:7:5: ( '{' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:7:7: '{'
-            {
-            match('{'); 
-
-            }
-
-            this.type = _type;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end T67
-
     // $ANTLR start T68
     public final void mT68() throws RecognitionException {
         try {
             int _type = T68;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:8:5: ( '}' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:8:7: '}'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:6:5: ( ';' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:6:7: ';'
             {
-            match('}'); 
+            match(';'); 
 
             }
 
@@ -159,11 +127,10 @@ public class UbiscriptLexer extends Lexer {
     public final void mT69() throws RecognitionException {
         try {
             int _type = T69;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:9:5: ( 'if' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:9:7: 'if'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:7:5: ( '{' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:7:7: '{'
             {
-            match("if"); 
-
+            match('{'); 
 
             }
 
@@ -178,10 +145,10 @@ public class UbiscriptLexer extends Lexer {
     public final void mT70() throws RecognitionException {
         try {
             int _type = T70;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:10:5: ( '(' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:10:7: '('
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:8:5: ( '}' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:8:7: '}'
             {
-            match('('); 
+            match('}'); 
 
             }
 
@@ -196,10 +163,11 @@ public class UbiscriptLexer extends Lexer {
     public final void mT71() throws RecognitionException {
         try {
             int _type = T71;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:11:5: ( ')' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:11:7: ')'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:9:5: ( 'if' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:9:7: 'if'
             {
-            match(')'); 
+            match("if"); 
+
 
             }
 
@@ -214,11 +182,10 @@ public class UbiscriptLexer extends Lexer {
     public final void mT72() throws RecognitionException {
         try {
             int _type = T72;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:12:5: ( 'else' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:12:7: 'else'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:10:5: ( '(' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:10:7: '('
             {
-            match("else"); 
-
+            match('('); 
 
             }
 
@@ -233,11 +200,10 @@ public class UbiscriptLexer extends Lexer {
     public final void mT73() throws RecognitionException {
         try {
             int _type = T73;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:13:5: ( 'for' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:13:7: 'for'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:11:5: ( ')' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:11:7: ')'
             {
-            match("for"); 
-
+            match(')'); 
 
             }
 
@@ -252,10 +218,10 @@ public class UbiscriptLexer extends Lexer {
     public final void mT74() throws RecognitionException {
         try {
             int _type = T74;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:14:5: ( 'var' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:14:7: 'var'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:12:5: ( 'else' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:12:7: 'else'
             {
-            match("var"); 
+            match("else"); 
 
 
             }
@@ -271,10 +237,10 @@ public class UbiscriptLexer extends Lexer {
     public final void mT75() throws RecognitionException {
         try {
             int _type = T75;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:15:5: ( 'foreach' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:15:7: 'foreach'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:13:5: ( 'for' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:13:7: 'for'
             {
-            match("foreach"); 
+            match("for"); 
 
 
             }
@@ -290,10 +256,10 @@ public class UbiscriptLexer extends Lexer {
     public final void mT76() throws RecognitionException {
         try {
             int _type = T76;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:16:5: ( 'in' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:16:7: 'in'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:14:5: ( 'var' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:14:7: 'var'
             {
-            match("in"); 
+            match("var"); 
 
 
             }
@@ -309,10 +275,10 @@ public class UbiscriptLexer extends Lexer {
     public final void mT77() throws RecognitionException {
         try {
             int _type = T77;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:17:5: ( 'while' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:17:7: 'while'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:15:5: ( 'foreach' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:15:7: 'foreach'
             {
-            match("while"); 
+            match("foreach"); 
 
 
             }
@@ -328,10 +294,10 @@ public class UbiscriptLexer extends Lexer {
     public final void mT78() throws RecognitionException {
         try {
             int _type = T78;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:18:5: ( 'function' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:18:7: 'function'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:16:5: ( 'in' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:16:7: 'in'
             {
-            match("function"); 
+            match("in"); 
 
 
             }
@@ -347,10 +313,10 @@ public class UbiscriptLexer extends Lexer {
     public final void mT79() throws RecognitionException {
         try {
             int _type = T79;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:19:5: ( 'return' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:19:7: 'return'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:17:5: ( 'while' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:17:7: 'while'
             {
-            match("return"); 
+            match("while"); 
 
 
             }
@@ -366,10 +332,10 @@ public class UbiscriptLexer extends Lexer {
     public final void mT80() throws RecognitionException {
         try {
             int _type = T80;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:20:5: ( 'break' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:20:7: 'break'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:18:5: ( 'function' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:18:7: 'function'
             {
-            match("break"); 
+            match("function"); 
 
 
             }
@@ -385,10 +351,10 @@ public class UbiscriptLexer extends Lexer {
     public final void mT81() throws RecognitionException {
         try {
             int _type = T81;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:21:5: ( 'continue' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:21:7: 'continue'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:19:5: ( 'return' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:19:7: 'return'
             {
-            match("continue"); 
+            match("return"); 
 
 
             }
@@ -404,10 +370,10 @@ public class UbiscriptLexer extends Lexer {
     public final void mT82() throws RecognitionException {
         try {
             int _type = T82;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:22:5: ( 'on' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:22:7: 'on'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:20:5: ( 'break' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:20:7: 'break'
             {
-            match("on"); 
+            match("break"); 
 
 
             }
@@ -423,10 +389,11 @@ public class UbiscriptLexer extends Lexer {
     public final void mT83() throws RecognitionException {
         try {
             int _type = T83;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:23:5: ( ':' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:23:7: ':'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:21:5: ( 'continue' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:21:7: 'continue'
             {
-            match(':'); 
+            match("continue"); 
+
 
             }
 
@@ -441,10 +408,11 @@ public class UbiscriptLexer extends Lexer {
     public final void mT84() throws RecognitionException {
         try {
             int _type = T84;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:24:5: ( '[' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:24:7: '['
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:22:5: ( 'on' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:22:7: 'on'
             {
-            match('['); 
+            match("on"); 
+
 
             }
 
@@ -459,10 +427,10 @@ public class UbiscriptLexer extends Lexer {
     public final void mT85() throws RecognitionException {
         try {
             int _type = T85;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:25:5: ( ']' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:25:7: ']'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:23:5: ( ':' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:23:7: ':'
             {
-            match(']'); 
+            match(':'); 
 
             }
 
@@ -477,10 +445,11 @@ public class UbiscriptLexer extends Lexer {
     public final void mT86() throws RecognitionException {
         try {
             int _type = T86;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:26:5: ( '.' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:26:7: '.'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:24:5: ( 'delete' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:24:7: 'delete'
             {
-            match('.'); 
+            match("delete"); 
+
 
             }
 
@@ -495,10 +464,10 @@ public class UbiscriptLexer extends Lexer {
     public final void mT87() throws RecognitionException {
         try {
             int _type = T87;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:27:5: ( 'new' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:27:7: 'new'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:25:5: ( 'typeof' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:25:7: 'typeof'
             {
-            match("new"); 
+            match("typeof"); 
 
 
             }
@@ -510,12 +479,85 @@ public class UbiscriptLexer extends Lexer {
     }
     // $ANTLR end T87
 
+    // $ANTLR start T88
+    public final void mT88() throws RecognitionException {
+        try {
+            int _type = T88;
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:26:5: ( '[' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:26:7: '['
+            {
+            match('['); 
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T88
+
+    // $ANTLR start T89
+    public final void mT89() throws RecognitionException {
+        try {
+            int _type = T89;
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:27:5: ( ']' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:27:7: ']'
+            {
+            match(']'); 
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T89
+
+    // $ANTLR start T90
+    public final void mT90() throws RecognitionException {
+        try {
+            int _type = T90;
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:28:5: ( '.' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:28:7: '.'
+            {
+            match('.'); 
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T90
+
+    // $ANTLR start T91
+    public final void mT91() throws RecognitionException {
+        try {
+            int _type = T91;
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:29:5: ( 'new' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:29:7: 'new'
+            {
+            match("new"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T91
+
     // $ANTLR start PLUS2
     public final void mPLUS2() throws RecognitionException {
         try {
             int _type = PLUS2;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:268:8: ( '++' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:268:10: '++'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:274:8: ( '++' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:274:10: '++'
             {
             match("++"); 
 
@@ -533,8 +575,8 @@ public class UbiscriptLexer extends Lexer {
     public final void mMINUS2() throws RecognitionException {
         try {
             int _type = MINUS2;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:269:9: ( '--' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:269:11: '--'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:275:9: ( '--' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:275:11: '--'
             {
             match("--"); 
 
@@ -552,8 +594,8 @@ public class UbiscriptLexer extends Lexer {
     public final void mMINUS() throws RecognitionException {
         try {
             int _type = MINUS;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:270:8: ( '-' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:270:10: '-'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:276:8: ( '-' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:276:10: '-'
             {
             match('-'); 
 
@@ -570,8 +612,8 @@ public class UbiscriptLexer extends Lexer {
     public final void mPLUS() throws RecognitionException {
         try {
             int _type = PLUS;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:271:7: ( '+' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:271:9: '+'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:277:7: ( '+' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:277:9: '+'
             {
             match('+'); 
 
@@ -588,8 +630,8 @@ public class UbiscriptLexer extends Lexer {
     public final void mMULT() throws RecognitionException {
         try {
             int _type = MULT;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:272:7: ( '*' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:272:9: '*'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:278:7: ( '*' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:278:9: '*'
             {
             match('*'); 
 
@@ -606,8 +648,8 @@ public class UbiscriptLexer extends Lexer {
     public final void mDIV() throws RecognitionException {
         try {
             int _type = DIV;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:273:7: ( '/' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:273:9: '/'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:279:7: ( '/' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:279:9: '/'
             {
             match('/'); 
 
@@ -624,8 +666,8 @@ public class UbiscriptLexer extends Lexer {
     public final void mPERCENT() throws RecognitionException {
         try {
             int _type = PERCENT;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:274:10: ( '%' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:274:12: '%'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:280:10: ( '%' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:280:12: '%'
             {
             match('%'); 
 
@@ -642,8 +684,8 @@ public class UbiscriptLexer extends Lexer {
     public final void mAND() throws RecognitionException {
         try {
             int _type = AND;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:275:7: ( '&&' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:275:9: '&&'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:281:7: ( '&&' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:281:9: '&&'
             {
             match("&&"); 
 
@@ -661,8 +703,8 @@ public class UbiscriptLexer extends Lexer {
     public final void mOR() throws RecognitionException {
         try {
             int _type = OR;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:276:6: ( '||' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:276:8: '||'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:282:6: ( '||' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:282:8: '||'
             {
             match("||"); 
 
@@ -680,8 +722,8 @@ public class UbiscriptLexer extends Lexer {
     public final void mNOT() throws RecognitionException {
         try {
             int _type = NOT;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:277:7: ( '!' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:277:9: '!'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:283:7: ( '!' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:283:9: '!'
             {
             match('!'); 
 
@@ -698,8 +740,8 @@ public class UbiscriptLexer extends Lexer {
     public final void mEQ() throws RecognitionException {
         try {
             int _type = EQ;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:278:6: ( '=' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:278:8: '='
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:284:6: ( '=' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:284:8: '='
             {
             match('='); 
 
@@ -716,8 +758,8 @@ public class UbiscriptLexer extends Lexer {
     public final void mPLUSEQ() throws RecognitionException {
         try {
             int _type = PLUSEQ;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:279:9: ( '+=' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:279:11: '+='
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:285:9: ( '+=' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:285:11: '+='
             {
             match("+="); 
 
@@ -735,8 +777,8 @@ public class UbiscriptLexer extends Lexer {
     public final void mMINUSEQ() throws RecognitionException {
         try {
             int _type = MINUSEQ;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:280:10: ( '-=' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:280:12: '-='
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:286:10: ( '-=' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:286:12: '-='
             {
             match("-="); 
 
@@ -754,8 +796,8 @@ public class UbiscriptLexer extends Lexer {
     public final void mMULTEQ() throws RecognitionException {
         try {
             int _type = MULTEQ;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:281:9: ( '*=' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:281:11: '*='
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:287:9: ( '*=' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:287:11: '*='
             {
             match("*="); 
 
@@ -773,8 +815,8 @@ public class UbiscriptLexer extends Lexer {
     public final void mDIVEQ() throws RecognitionException {
         try {
             int _type = DIVEQ;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:282:8: ( '/=' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:282:10: '/='
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:288:8: ( '/=' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:288:10: '/='
             {
             match("/="); 
 
@@ -792,8 +834,8 @@ public class UbiscriptLexer extends Lexer {
     public final void mPERCENTEQ() throws RecognitionException {
         try {
             int _type = PERCENTEQ;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:283:11: ( '%=' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:283:13: '%='
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:289:11: ( '%=' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:289:13: '%='
             {
             match("%="); 
 
@@ -811,8 +853,8 @@ public class UbiscriptLexer extends Lexer {
     public final void mEQ2() throws RecognitionException {
         try {
             int _type = EQ2;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:284:7: ( '==' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:284:9: '=='
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:290:7: ( '==' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:290:9: '=='
             {
             match("=="); 
 
@@ -830,8 +872,8 @@ public class UbiscriptLexer extends Lexer {
     public final void mNOTEQ() throws RecognitionException {
         try {
             int _type = NOTEQ;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:285:8: ( '!=' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:285:10: '!='
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:291:8: ( '!=' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:291:10: '!='
             {
             match("!="); 
 
@@ -849,8 +891,8 @@ public class UbiscriptLexer extends Lexer {
     public final void mGT() throws RecognitionException {
         try {
             int _type = GT;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:286:6: ( '>' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:286:8: '>'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:292:6: ( '>' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:292:8: '>'
             {
             match('>'); 
 
@@ -867,8 +909,8 @@ public class UbiscriptLexer extends Lexer {
     public final void mLT() throws RecognitionException {
         try {
             int _type = LT;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:287:6: ( '<' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:287:8: '<'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:293:6: ( '<' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:293:8: '<'
             {
             match('<'); 
 
@@ -885,8 +927,8 @@ public class UbiscriptLexer extends Lexer {
     public final void mGTEQ() throws RecognitionException {
         try {
             int _type = GTEQ;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:288:7: ( '>=' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:288:9: '>='
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:294:7: ( '>=' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:294:9: '>='
             {
             match(">="); 
 
@@ -904,8 +946,8 @@ public class UbiscriptLexer extends Lexer {
     public final void mLTEQ() throws RecognitionException {
         try {
             int _type = LTEQ;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:289:7: ( '<=' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:289:9: '<='
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:295:7: ( '<=' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:295:9: '<='
             {
             match("<="); 
 
@@ -923,8 +965,8 @@ public class UbiscriptLexer extends Lexer {
     public final void mQUESTION() throws RecognitionException {
         try {
             int _type = QUESTION;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:290:10: ( '?' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:290:12: '?'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:296:10: ( '?' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:296:12: '?'
             {
             match('?'); 
 
@@ -941,8 +983,8 @@ public class UbiscriptLexer extends Lexer {
     public final void mCOMMA() throws RecognitionException {
         try {
             int _type = COMMA;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:291:8: ( ',' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:291:10: ','
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:297:8: ( ',' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:297:10: ','
             {
             match(','); 
 
@@ -959,8 +1001,8 @@ public class UbiscriptLexer extends Lexer {
     public final void mNULL() throws RecognitionException {
         try {
             int _type = NULL;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:294:2: ( 'null' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:294:4: 'null'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:300:2: ( 'null' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:300:4: 'null'
             {
             match("null"); 
 
@@ -978,7 +1020,7 @@ public class UbiscriptLexer extends Lexer {
     public final void mBOOLEAN() throws RecognitionException {
         try {
             int _type = BOOLEAN;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:298:2: ( 'true' | 'false' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:304:2: ( 'true' | 'false' )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -990,13 +1032,13 @@ public class UbiscriptLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("297:1: BOOLEAN : ( 'true' | 'false' );", 1, 0, input);
+                    new NoViableAltException("303:1: BOOLEAN : ( 'true' | 'false' );", 1, 0, input);
 
                 throw nvae;
             }
             switch (alt1) {
                 case 1 :
-                    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:298:4: 'true'
+                    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:304:4: 'true'
                     {
                     match("true"); 
 
@@ -1004,7 +1046,7 @@ public class UbiscriptLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:299:4: 'false'
+                    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:305:4: 'false'
                     {
                     match("false"); 
 
@@ -1024,11 +1066,11 @@ public class UbiscriptLexer extends Lexer {
     public final void mID() throws RecognitionException {
         try {
             int _type = ID;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:303:2: ( LETTER ( LETTER | DIGIT )* )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:303:4: LETTER ( LETTER | DIGIT )*
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:309:2: ( LETTER ( LETTER | DIGIT )* )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:309:4: LETTER ( LETTER | DIGIT )*
             {
             mLETTER(); 
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:303:11: ( LETTER | DIGIT )*
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:309:11: ( LETTER | DIGIT )*
             loop2:
             do {
                 int alt2=3;
@@ -1044,14 +1086,14 @@ public class UbiscriptLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:303:13: LETTER
+            	    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:309:13: LETTER
             	    {
             	    mLETTER(); 
 
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:303:22: DIGIT
+            	    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:309:22: DIGIT
             	    {
             	    mDIGIT(); 
 
@@ -1077,10 +1119,10 @@ public class UbiscriptLexer extends Lexer {
     public final void mINTEGER() throws RecognitionException {
         try {
             int _type = INTEGER;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:307:2: ( ( DIGIT )+ )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:307:4: ( DIGIT )+
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:313:2: ( ( DIGIT )+ )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:313:4: ( DIGIT )+
             {
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:307:4: ( DIGIT )+
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:313:4: ( DIGIT )+
             int cnt3=0;
             loop3:
             do {
@@ -1094,7 +1136,7 @@ public class UbiscriptLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:307:4: DIGIT
+            	    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:313:4: DIGIT
             	    {
             	    mDIGIT(); 
 
@@ -1124,10 +1166,10 @@ public class UbiscriptLexer extends Lexer {
     public final void mFLOAT() throws RecognitionException {
         try {
             int _type = FLOAT;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:311:2: ( ( DIGIT )+ ( '.' ( DIGIT )* )? ( EXPONENT )? )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:311:4: ( DIGIT )+ ( '.' ( DIGIT )* )? ( EXPONENT )?
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:317:2: ( ( DIGIT )+ ( '.' ( DIGIT )* )? ( EXPONENT )? )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:317:4: ( DIGIT )+ ( '.' ( DIGIT )* )? ( EXPONENT )?
             {
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:311:4: ( DIGIT )+
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:317:4: ( DIGIT )+
             int cnt4=0;
             loop4:
             do {
@@ -1141,7 +1183,7 @@ public class UbiscriptLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:311:4: DIGIT
+            	    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:317:4: DIGIT
             	    {
             	    mDIGIT(); 
 
@@ -1157,7 +1199,7 @@ public class UbiscriptLexer extends Lexer {
                 cnt4++;
             } while (true);
 
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:311:11: ( '.' ( DIGIT )* )?
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:317:11: ( '.' ( DIGIT )* )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -1166,10 +1208,10 @@ public class UbiscriptLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:311:13: '.' ( DIGIT )*
+                    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:317:13: '.' ( DIGIT )*
                     {
                     match('.'); 
-                    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:311:17: ( DIGIT )*
+                    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:317:17: ( DIGIT )*
                     loop5:
                     do {
                         int alt5=2;
@@ -1182,7 +1224,7 @@ public class UbiscriptLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:311:17: DIGIT
+                    	    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:317:17: DIGIT
                     	    {
                     	    mDIGIT(); 
 
@@ -1200,7 +1242,7 @@ public class UbiscriptLexer extends Lexer {
 
             }
 
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:311:27: ( EXPONENT )?
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:317:27: ( EXPONENT )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -1209,7 +1251,7 @@ public class UbiscriptLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:311:29: EXPONENT
+                    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:317:29: EXPONENT
                     {
                     mEXPONENT(); 
 
@@ -1232,8 +1274,8 @@ public class UbiscriptLexer extends Lexer {
     public final void mEXPONENT() throws RecognitionException {
         try {
             int _type = EXPONENT;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:315:2: ( ( 'e' | 'E' ) ( '+' | '-' )? ( DIGIT )+ )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:315:4: ( 'e' | 'E' ) ( '+' | '-' )? ( DIGIT )+
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:321:2: ( ( 'e' | 'E' ) ( '+' | '-' )? ( DIGIT )+ )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:321:4: ( 'e' | 'E' ) ( '+' | '-' )? ( DIGIT )+
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -1245,7 +1287,7 @@ public class UbiscriptLexer extends Lexer {
                 recover(mse);    throw mse;
             }
 
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:315:18: ( '+' | '-' )?
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:321:18: ( '+' | '-' )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -1272,7 +1314,7 @@ public class UbiscriptLexer extends Lexer {
 
             }
 
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:315:33: ( DIGIT )+
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:321:33: ( DIGIT )+
             int cnt9=0;
             loop9:
             do {
@@ -1286,7 +1328,7 @@ public class UbiscriptLexer extends Lexer {
 
                 switch (alt9) {
             	case 1 :
-            	    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:315:33: DIGIT
+            	    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:321:33: DIGIT
             	    {
             	    mDIGIT(); 
 
@@ -1316,11 +1358,11 @@ public class UbiscriptLexer extends Lexer {
     public final void mSTRING() throws RecognitionException {
         try {
             int _type = STRING;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:319:2: ( '\"' ( ESC | ~ ( '\"' | '\\\\' | '\\n' | '\\r' | '\\t' | '\\b' | '\\f' ) )* '\"' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:319:4: '\"' ( ESC | ~ ( '\"' | '\\\\' | '\\n' | '\\r' | '\\t' | '\\b' | '\\f' ) )* '\"'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:325:2: ( '\"' ( ESC | ~ ( '\"' | '\\\\' | '\\n' | '\\r' | '\\t' | '\\b' | '\\f' ) )* '\"' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:325:4: '\"' ( ESC | ~ ( '\"' | '\\\\' | '\\n' | '\\r' | '\\t' | '\\b' | '\\f' ) )* '\"'
             {
             match('\"'); 
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:319:8: ( ESC | ~ ( '\"' | '\\\\' | '\\n' | '\\r' | '\\t' | '\\b' | '\\f' ) )*
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:325:8: ( ESC | ~ ( '\"' | '\\\\' | '\\n' | '\\r' | '\\t' | '\\b' | '\\f' ) )*
             loop10:
             do {
                 int alt10=3;
@@ -1336,14 +1378,14 @@ public class UbiscriptLexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:319:10: ESC
+            	    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:325:10: ESC
             	    {
             	    mESC(); 
 
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:319:16: ~ ( '\"' | '\\\\' | '\\n' | '\\r' | '\\t' | '\\b' | '\\f' )
+            	    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:325:16: ~ ( '\"' | '\\\\' | '\\n' | '\\r' | '\\t' | '\\b' | '\\f' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\u0007')||input.LA(1)=='\u000B'||(input.LA(1)>='\u000E' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -1379,8 +1421,8 @@ public class UbiscriptLexer extends Lexer {
     public final void mESC() throws RecognitionException {
         try {
             int _type = ESC;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:323:2: ( '\\\\' ( 'n' | 'r' | 't' | 'b' | 'f' | '\"' | '\\\\' ) )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:323:4: '\\\\' ( 'n' | 'r' | 't' | 'b' | 'f' | '\"' | '\\\\' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:329:2: ( '\\\\' ( 'n' | 'r' | 't' | 'b' | 'f' | '\"' | '\\\\' ) )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:329:4: '\\\\' ( 'n' | 'r' | 't' | 'b' | 'f' | '\"' | '\\\\' )
             {
             match('\\'); 
             if ( input.LA(1)=='\"'||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -1407,8 +1449,8 @@ public class UbiscriptLexer extends Lexer {
     public final void mLETTER() throws RecognitionException {
         try {
             int _type = LETTER;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:327:2: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:327:4: ( 'a' .. 'z' | 'A' .. 'Z' | '_' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:333:2: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:333:4: ( 'a' .. 'z' | 'A' .. 'Z' | '_' )
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -1434,11 +1476,11 @@ public class UbiscriptLexer extends Lexer {
     public final void mDIGIT() throws RecognitionException {
         try {
             int _type = DIGIT;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:331:2: ( ( '0' .. '9' ) )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:331:4: ( '0' .. '9' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:337:2: ( ( '0' .. '9' ) )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:337:4: ( '0' .. '9' )
             {
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:331:4: ( '0' .. '9' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:331:6: '0' .. '9'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:337:4: ( '0' .. '9' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:337:6: '0' .. '9'
             {
             matchRange('0','9'); 
 
@@ -1458,12 +1500,12 @@ public class UbiscriptLexer extends Lexer {
     public final void mLINE_COMMENT() throws RecognitionException {
         try {
             int _type = LINE_COMMENT;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:335:2: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:335:4: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:341:2: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:341:4: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
             {
             match("//"); 
 
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:335:9: (~ ( '\\n' | '\\r' ) )*
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:341:9: (~ ( '\\n' | '\\r' ) )*
             loop11:
             do {
                 int alt11=2;
@@ -1476,7 +1518,7 @@ public class UbiscriptLexer extends Lexer {
 
                 switch (alt11) {
             	case 1 :
-            	    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:335:9: ~ ( '\\n' | '\\r' )
+            	    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:341:9: ~ ( '\\n' | '\\r' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -1497,7 +1539,7 @@ public class UbiscriptLexer extends Lexer {
                 }
             } while (true);
 
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:335:27: ( '\\r' )?
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:341:27: ( '\\r' )?
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -1506,7 +1548,7 @@ public class UbiscriptLexer extends Lexer {
             }
             switch (alt12) {
                 case 1 :
-                    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:335:27: '\\r'
+                    // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:341:27: '\\r'
                     {
                     match('\r'); 
 
@@ -1531,10 +1573,10 @@ public class UbiscriptLexer extends Lexer {
     public final void mWS() throws RecognitionException {
         try {
             int _type = WS;
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:339:2: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:339:4: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:345:2: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:345:4: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:339:4: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:345:4: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt13=0;
             loop13:
             do {
@@ -1585,411 +1627,425 @@ public class UbiscriptLexer extends Lexer {
     // $ANTLR end WS
 
     public void mTokens() throws RecognitionException {
-        // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:8: ( T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | PLUS2 | MINUS2 | MINUS | PLUS | MULT | DIV | PERCENT | AND | OR | NOT | EQ | PLUSEQ | MINUSEQ | MULTEQ | DIVEQ | PERCENTEQ | EQ2 | NOTEQ | GT | LT | GTEQ | LTEQ | QUESTION | COMMA | NULL | BOOLEAN | ID | INTEGER | FLOAT | EXPONENT | STRING | ESC | LETTER | DIGIT | LINE_COMMENT | WS )
-        int alt14=58;
+        // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:8: ( T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | T88 | T89 | T90 | T91 | PLUS2 | MINUS2 | MINUS | PLUS | MULT | DIV | PERCENT | AND | OR | NOT | EQ | PLUSEQ | MINUSEQ | MULTEQ | DIVEQ | PERCENTEQ | EQ2 | NOTEQ | GT | LT | GTEQ | LTEQ | QUESTION | COMMA | NULL | BOOLEAN | ID | INTEGER | FLOAT | EXPONENT | STRING | ESC | LETTER | DIGIT | LINE_COMMENT | WS )
+        int alt14=60;
         alt14 = dfa14.predict(input);
         switch (alt14) {
             case 1 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:10: T66
-                {
-                mT66(); 
-
-                }
-                break;
-            case 2 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:14: T67
-                {
-                mT67(); 
-
-                }
-                break;
-            case 3 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:18: T68
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:10: T68
                 {
                 mT68(); 
 
                 }
                 break;
-            case 4 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:22: T69
+            case 2 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:14: T69
                 {
                 mT69(); 
 
                 }
                 break;
-            case 5 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:26: T70
+            case 3 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:18: T70
                 {
                 mT70(); 
 
                 }
                 break;
-            case 6 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:30: T71
+            case 4 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:22: T71
                 {
                 mT71(); 
 
                 }
                 break;
-            case 7 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:34: T72
+            case 5 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:26: T72
                 {
                 mT72(); 
 
                 }
                 break;
-            case 8 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:38: T73
+            case 6 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:30: T73
                 {
                 mT73(); 
 
                 }
                 break;
-            case 9 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:42: T74
+            case 7 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:34: T74
                 {
                 mT74(); 
 
                 }
                 break;
-            case 10 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:46: T75
+            case 8 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:38: T75
                 {
                 mT75(); 
 
                 }
                 break;
-            case 11 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:50: T76
+            case 9 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:42: T76
                 {
                 mT76(); 
 
                 }
                 break;
-            case 12 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:54: T77
+            case 10 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:46: T77
                 {
                 mT77(); 
 
                 }
                 break;
-            case 13 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:58: T78
+            case 11 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:50: T78
                 {
                 mT78(); 
 
                 }
                 break;
-            case 14 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:62: T79
+            case 12 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:54: T79
                 {
                 mT79(); 
 
                 }
                 break;
-            case 15 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:66: T80
+            case 13 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:58: T80
                 {
                 mT80(); 
 
                 }
                 break;
-            case 16 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:70: T81
+            case 14 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:62: T81
                 {
                 mT81(); 
 
                 }
                 break;
-            case 17 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:74: T82
+            case 15 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:66: T82
                 {
                 mT82(); 
 
                 }
                 break;
-            case 18 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:78: T83
+            case 16 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:70: T83
                 {
                 mT83(); 
 
                 }
                 break;
-            case 19 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:82: T84
+            case 17 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:74: T84
                 {
                 mT84(); 
 
                 }
                 break;
-            case 20 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:86: T85
+            case 18 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:78: T85
                 {
                 mT85(); 
 
                 }
                 break;
-            case 21 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:90: T86
+            case 19 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:82: T86
                 {
                 mT86(); 
 
                 }
                 break;
-            case 22 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:94: T87
+            case 20 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:86: T87
                 {
                 mT87(); 
 
                 }
                 break;
+            case 21 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:90: T88
+                {
+                mT88(); 
+
+                }
+                break;
+            case 22 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:94: T89
+                {
+                mT89(); 
+
+                }
+                break;
             case 23 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:98: PLUS2
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:98: T90
+                {
+                mT90(); 
+
+                }
+                break;
+            case 24 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:102: T91
+                {
+                mT91(); 
+
+                }
+                break;
+            case 25 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:106: PLUS2
                 {
                 mPLUS2(); 
 
                 }
                 break;
-            case 24 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:104: MINUS2
+            case 26 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:112: MINUS2
                 {
                 mMINUS2(); 
 
                 }
                 break;
-            case 25 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:111: MINUS
+            case 27 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:119: MINUS
                 {
                 mMINUS(); 
 
                 }
                 break;
-            case 26 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:117: PLUS
+            case 28 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:125: PLUS
                 {
                 mPLUS(); 
 
                 }
                 break;
-            case 27 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:122: MULT
+            case 29 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:130: MULT
                 {
                 mMULT(); 
 
                 }
                 break;
-            case 28 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:127: DIV
+            case 30 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:135: DIV
                 {
                 mDIV(); 
 
                 }
                 break;
-            case 29 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:131: PERCENT
+            case 31 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:139: PERCENT
                 {
                 mPERCENT(); 
 
                 }
                 break;
-            case 30 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:139: AND
+            case 32 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:147: AND
                 {
                 mAND(); 
 
                 }
                 break;
-            case 31 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:143: OR
+            case 33 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:151: OR
                 {
                 mOR(); 
 
                 }
                 break;
-            case 32 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:146: NOT
+            case 34 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:154: NOT
                 {
                 mNOT(); 
 
                 }
                 break;
-            case 33 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:150: EQ
+            case 35 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:158: EQ
                 {
                 mEQ(); 
 
                 }
                 break;
-            case 34 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:153: PLUSEQ
+            case 36 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:161: PLUSEQ
                 {
                 mPLUSEQ(); 
 
                 }
                 break;
-            case 35 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:160: MINUSEQ
+            case 37 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:168: MINUSEQ
                 {
                 mMINUSEQ(); 
 
                 }
                 break;
-            case 36 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:168: MULTEQ
+            case 38 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:176: MULTEQ
                 {
                 mMULTEQ(); 
 
                 }
                 break;
-            case 37 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:175: DIVEQ
+            case 39 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:183: DIVEQ
                 {
                 mDIVEQ(); 
 
                 }
                 break;
-            case 38 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:181: PERCENTEQ
+            case 40 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:189: PERCENTEQ
                 {
                 mPERCENTEQ(); 
 
                 }
                 break;
-            case 39 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:191: EQ2
+            case 41 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:199: EQ2
                 {
                 mEQ2(); 
 
                 }
                 break;
-            case 40 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:195: NOTEQ
+            case 42 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:203: NOTEQ
                 {
                 mNOTEQ(); 
 
                 }
                 break;
-            case 41 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:201: GT
+            case 43 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:209: GT
                 {
                 mGT(); 
 
                 }
                 break;
-            case 42 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:204: LT
+            case 44 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:212: LT
                 {
                 mLT(); 
 
                 }
                 break;
-            case 43 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:207: GTEQ
+            case 45 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:215: GTEQ
                 {
                 mGTEQ(); 
 
                 }
                 break;
-            case 44 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:212: LTEQ
+            case 46 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:220: LTEQ
                 {
                 mLTEQ(); 
 
                 }
                 break;
-            case 45 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:217: QUESTION
+            case 47 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:225: QUESTION
                 {
                 mQUESTION(); 
 
                 }
                 break;
-            case 46 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:226: COMMA
+            case 48 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:234: COMMA
                 {
                 mCOMMA(); 
 
                 }
                 break;
-            case 47 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:232: NULL
+            case 49 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:240: NULL
                 {
                 mNULL(); 
 
                 }
                 break;
-            case 48 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:237: BOOLEAN
+            case 50 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:245: BOOLEAN
                 {
                 mBOOLEAN(); 
 
                 }
                 break;
-            case 49 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:245: ID
+            case 51 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:253: ID
                 {
                 mID(); 
 
                 }
                 break;
-            case 50 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:248: INTEGER
+            case 52 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:256: INTEGER
                 {
                 mINTEGER(); 
 
                 }
                 break;
-            case 51 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:256: FLOAT
+            case 53 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:264: FLOAT
                 {
                 mFLOAT(); 
 
                 }
                 break;
-            case 52 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:262: EXPONENT
+            case 54 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:270: EXPONENT
                 {
                 mEXPONENT(); 
 
                 }
                 break;
-            case 53 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:271: STRING
+            case 55 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:279: STRING
                 {
                 mSTRING(); 
 
                 }
                 break;
-            case 54 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:278: ESC
+            case 56 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:286: ESC
                 {
                 mESC(); 
 
                 }
                 break;
-            case 55 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:282: LETTER
+            case 57 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:290: LETTER
                 {
                 mLETTER(); 
 
                 }
                 break;
-            case 56 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:289: DIGIT
+            case 58 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:297: DIGIT
                 {
                 mDIGIT(); 
 
                 }
                 break;
-            case 57 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:295: LINE_COMMENT
+            case 59 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:303: LINE_COMMENT
                 {
                 mLINE_COMMENT(); 
 
                 }
                 break;
-            case 58 :
-                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:308: WS
+            case 60 :
+                // C:\\Documents and Settings\\niklaus\\workspace\\ubiscript\\src\\org\\ubiscript\\parser\\Ubiscript.g:1:316: WS
                 {
                 mWS(); 
 
@@ -2003,186 +2059,201 @@ public class UbiscriptLexer extends Lexer {
 
     protected DFA14 dfa14 = new DFA14(this);
     static final String DFA14_eotS =
-        "\4\uffff\1\52\2\uffff\10\52\4\uffff\1\52\1\73\1\76\1\100\1\103\1"+
-        "\105\2\uffff\1\107\1\111\1\113\1\115\2\uffff\2\52\1\117\4\uffff"+
-        "\1\122\1\123\1\uffff\1\52\1\uffff\11\52\1\135\2\52\25\uffff\1\52"+
-        "\1\uffff\1\117\3\uffff\1\52\1\143\2\52\1\146\4\52\1\uffff\1\153"+
-        "\2\52\1\156\1\52\1\uffff\2\52\1\uffff\4\52\1\uffff\1\166\1\167\1"+
-        "\uffff\2\52\1\167\1\172\1\52\1\174\1\52\2\uffff\2\52\1\uffff\1\u0080"+
-        "\1\uffff\1\52\1\u0082\1\52\1\uffff\1\52\1\uffff\1\u0085\1\u0086"+
-        "\2\uffff";
+        "\4\uffff\1\53\2\uffff\10\53\1\uffff\2\53\3\uffff\1\53\1\77\1\102"+
+        "\1\104\1\107\1\111\2\uffff\1\113\1\115\1\117\1\121\2\uffff\1\53"+
+        "\1\122\4\uffff\1\125\1\126\1\uffff\1\53\1\uffff\11\53\1\140\5\53"+
+        "\27\uffff\1\122\2\uffff\1\53\1\150\2\53\1\153\4\53\1\uffff\3\53"+
+        "\1\163\1\53\1\165\1\53\1\uffff\2\53\1\uffff\6\53\1\177\1\uffff\1"+
+        "\u0080\1\uffff\2\53\1\177\1\u0083\1\53\1\u0085\3\53\2\uffff\2\53"+
+        "\1\uffff\1\u008b\1\uffff\1\53\1\u008d\1\u008e\1\u008f\1\53\1\uffff"+
+        "\1\53\3\uffff\1\u0092\1\u0093\2\uffff";
     static final String DFA14_eofS =
-        "\u0087\uffff";
+        "\u0094\uffff";
     static final String DFA14_minS =
         "\1\11\3\uffff\1\146\2\uffff\1\53\2\141\1\150\1\145\1\162\1\157\1"+
-        "\156\4\uffff\1\145\1\53\1\55\1\75\1\57\1\75\2\uffff\4\75\2\uffff"+
-        "\1\162\1\53\1\56\4\uffff\2\60\1\uffff\1\163\1\uffff\1\60\1\162\1"+
-        "\156\1\154\1\162\1\151\1\164\1\145\1\156\1\60\1\167\1\154\25\uffff"+
-        "\1\165\1\uffff\1\56\3\uffff\1\145\1\60\1\143\1\163\1\60\1\154\1"+
-        "\165\1\141\1\164\1\uffff\1\60\1\154\1\145\1\60\1\141\1\uffff\1\164"+
-        "\1\145\1\uffff\1\145\1\162\1\153\1\151\1\uffff\2\60\1\uffff\1\143"+
-        "\1\151\2\60\1\156\1\60\1\156\2\uffff\1\150\1\157\1\uffff\1\60\1"+
-        "\uffff\1\165\1\60\1\156\1\uffff\1\145\1\uffff\2\60\2\uffff";
+        "\156\1\uffff\1\145\1\162\3\uffff\1\145\1\53\1\55\1\75\1\57\1\75"+
+        "\2\uffff\4\75\2\uffff\1\53\1\56\4\uffff\2\60\1\uffff\1\163\1\uffff"+
+        "\1\60\1\162\1\156\1\154\1\162\1\151\1\164\1\145\1\156\1\60\1\154"+
+        "\1\160\1\165\1\167\1\154\27\uffff\1\56\2\uffff\1\145\1\60\1\143"+
+        "\1\163\1\60\1\154\1\165\1\141\1\164\1\uffff\3\145\1\60\1\154\1\60"+
+        "\1\141\1\uffff\1\164\1\145\1\uffff\1\145\1\162\1\153\1\151\1\164"+
+        "\1\157\1\60\1\uffff\1\60\1\uffff\1\143\1\151\2\60\1\156\1\60\1\156"+
+        "\1\145\1\146\2\uffff\1\150\1\157\1\uffff\1\60\1\uffff\1\165\3\60"+
+        "\1\156\1\uffff\1\145\3\uffff\2\60\2\uffff";
     static final String DFA14_maxS =
         "\1\175\3\uffff\1\156\2\uffff\1\154\1\165\1\141\1\150\1\145\1\162"+
-        "\1\157\1\156\4\uffff\1\165\5\75\2\uffff\4\75\2\uffff\1\162\1\71"+
-        "\1\145\4\uffff\2\172\1\uffff\1\163\1\uffff\1\71\1\162\1\156\1\154"+
-        "\1\162\1\151\1\164\1\145\1\156\1\172\1\167\1\154\25\uffff\1\165"+
-        "\1\uffff\1\145\3\uffff\1\145\1\172\1\143\1\163\1\172\1\154\1\165"+
-        "\1\141\1\164\1\uffff\1\172\1\154\1\145\1\172\1\141\1\uffff\1\164"+
-        "\1\145\1\uffff\1\145\1\162\1\153\1\151\1\uffff\2\172\1\uffff\1\143"+
-        "\1\151\2\172\1\156\1\172\1\156\2\uffff\1\150\1\157\1\uffff\1\172"+
-        "\1\uffff\1\165\1\172\1\156\1\uffff\1\145\1\uffff\2\172\2\uffff";
+        "\1\157\1\156\1\uffff\1\145\1\171\3\uffff\1\165\5\75\2\uffff\4\75"+
+        "\2\uffff\1\71\1\145\4\uffff\2\172\1\uffff\1\163\1\uffff\1\71\1\162"+
+        "\1\156\1\154\1\162\1\151\1\164\1\145\1\156\1\172\1\154\1\160\1\165"+
+        "\1\167\1\154\27\uffff\1\145\2\uffff\1\145\1\172\1\143\1\163\1\172"+
+        "\1\154\1\165\1\141\1\164\1\uffff\3\145\1\172\1\154\1\172\1\141\1"+
+        "\uffff\1\164\1\145\1\uffff\1\145\1\162\1\153\1\151\1\164\1\157\1"+
+        "\172\1\uffff\1\172\1\uffff\1\143\1\151\2\172\1\156\1\172\1\156\1"+
+        "\145\1\146\2\uffff\1\150\1\157\1\uffff\1\172\1\uffff\1\165\3\172"+
+        "\1\156\1\uffff\1\145\3\uffff\2\172\2\uffff";
     static final String DFA14_acceptS =
-        "\1\uffff\1\1\1\2\1\3\1\uffff\1\5\1\6\10\uffff\1\22\1\23\1\24\1\25"+
-        "\6\uffff\1\36\1\37\4\uffff\1\55\1\56\3\uffff\1\61\1\65\1\66\1\72"+
-        "\2\uffff\1\61\1\uffff\1\64\14\uffff\1\27\1\42\1\32\1\30\1\43\1\31"+
-        "\1\44\1\33\1\71\1\45\1\34\1\46\1\35\1\50\1\40\1\47\1\41\1\53\1\51"+
-        "\1\54\1\52\1\uffff\1\62\1\uffff\1\63\1\13\1\4\11\uffff\1\21\5\uffff"+
-        "\1\10\2\uffff\1\11\4\uffff\1\26\2\uffff\1\7\7\uffff\1\57\1\60\2"+
-        "\uffff\1\14\1\uffff\1\17\3\uffff\1\16\1\uffff\1\12\2\uffff\1\15"+
-        "\1\20";
+        "\1\uffff\1\1\1\2\1\3\1\uffff\1\5\1\6\10\uffff\1\22\2\uffff\1\25"+
+        "\1\26\1\27\6\uffff\1\40\1\41\4\uffff\1\57\1\60\2\uffff\1\63\1\67"+
+        "\1\70\1\74\2\uffff\1\63\1\uffff\1\66\17\uffff\1\31\1\44\1\34\1\32"+
+        "\1\45\1\33\1\46\1\35\1\73\1\47\1\36\1\50\1\37\1\52\1\42\1\51\1\43"+
+        "\1\55\1\53\1\56\1\54\1\64\1\65\1\uffff\1\4\1\13\11\uffff\1\21\7"+
+        "\uffff\1\10\2\uffff\1\11\7\uffff\1\30\1\uffff\1\7\11\uffff\1\62"+
+        "\1\61\2\uffff\1\14\1\uffff\1\17\5\uffff\1\16\1\uffff\1\23\1\24\1"+
+        "\12\2\uffff\1\15\1\20";
     static final String DFA14_specialS =
-        "\u0087\uffff}>";
+        "\u0094\uffff}>";
     static final String[] DFA14_transitionS = {
-            "\2\47\2\uffff\1\47\22\uffff\1\47\1\33\1\45\2\uffff\1\30\1\31"+
-            "\1\uffff\1\5\1\6\1\26\1\24\1\40\1\25\1\22\1\27\12\43\1\17\1"+
-            "\1\1\36\1\34\1\35\1\37\1\uffff\4\44\1\42\25\44\1\20\1\46\1\21"+
-            "\1\uffff\1\44\1\uffff\1\44\1\14\1\15\1\44\1\7\1\10\2\44\1\4"+
-            "\4\44\1\23\1\16\2\44\1\13\1\44\1\41\1\44\1\11\1\12\3\44\1\2"+
-            "\1\32\1\3",
+            "\2\50\2\uffff\1\50\22\uffff\1\50\1\35\1\46\2\uffff\1\32\1\33"+
+            "\1\uffff\1\5\1\6\1\30\1\26\1\42\1\27\1\24\1\31\12\44\1\17\1"+
+            "\1\1\40\1\36\1\37\1\41\1\uffff\4\45\1\43\25\45\1\22\1\47\1\23"+
+            "\1\uffff\1\45\1\uffff\1\45\1\14\1\15\1\20\1\7\1\10\2\45\1\4"+
+            "\4\45\1\25\1\16\2\45\1\13\1\45\1\21\1\45\1\11\1\12\3\45\1\2"+
+            "\1\34\1\3",
             "",
             "",
             "",
-            "\1\51\7\uffff\1\50",
+            "\1\51\7\uffff\1\52",
             "",
             "",
-            "\1\54\1\uffff\1\54\2\uffff\12\55\62\uffff\1\53",
-            "\1\60\15\uffff\1\56\5\uffff\1\57",
-            "\1\61",
+            "\1\55\1\uffff\1\55\2\uffff\12\56\62\uffff\1\54",
+            "\1\61\15\uffff\1\57\5\uffff\1\60",
             "\1\62",
             "\1\63",
             "\1\64",
             "\1\65",
             "\1\66",
+            "\1\67",
+            "",
+            "\1\70",
+            "\1\72\6\uffff\1\71",
             "",
             "",
             "",
-            "",
-            "\1\67\17\uffff\1\70",
-            "\1\71\21\uffff\1\72",
-            "\1\74\17\uffff\1\75",
-            "\1\77",
-            "\1\101\15\uffff\1\102",
-            "\1\104",
-            "",
-            "",
-            "\1\106",
+            "\1\73\17\uffff\1\74",
+            "\1\75\21\uffff\1\76",
+            "\1\100\17\uffff\1\101",
+            "\1\103",
+            "\1\105\15\uffff\1\106",
             "\1\110",
+            "",
+            "",
             "\1\112",
             "\1\114",
-            "",
-            "",
             "\1\116",
-            "\1\54\1\uffff\1\54\2\uffff\12\55",
-            "\1\121\1\uffff\12\120\13\uffff\1\121\37\uffff\1\121",
+            "\1\120",
+            "",
+            "",
+            "\1\55\1\uffff\1\55\2\uffff\12\56",
+            "\1\123\1\uffff\12\124\13\uffff\1\123\37\uffff\1\123",
             "",
             "",
             "",
             "",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\12\53\7\uffff\32\53\4\uffff\1\53\1\uffff\32\53",
+            "\12\53\7\uffff\32\53\4\uffff\1\53\1\uffff\32\53",
             "",
-            "\1\124",
-            "",
-            "\12\55",
-            "\1\125",
-            "\1\126",
             "\1\127",
+            "",
+            "\12\56",
             "\1\130",
             "\1\131",
             "\1\132",
             "\1\133",
             "\1\134",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\1\135",
             "\1\136",
             "\1\137",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\140",
-            "",
-            "\1\121\1\uffff\12\120\13\uffff\1\121\37\uffff\1\121",
-            "",
-            "",
-            "",
+            "\12\53\7\uffff\32\53\4\uffff\1\53\1\uffff\32\53",
             "\1\141",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\4\52\1\142\25\52",
+            "\1\142",
+            "\1\143",
             "\1\144",
             "\1\145",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\147",
-            "\1\150",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\123\1\uffff\12\124\13\uffff\1\123\37\uffff\1\123",
+            "",
+            "",
+            "\1\146",
+            "\12\53\7\uffff\32\53\4\uffff\1\53\1\uffff\4\53\1\147\25\53",
             "\1\151",
             "\1\152",
-            "",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\12\53\7\uffff\32\53\4\uffff\1\53\1\uffff\32\53",
             "\1\154",
             "\1\155",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\1\156",
             "\1\157",
             "",
             "\1\160",
             "\1\161",
-            "",
             "\1\162",
-            "\1\163",
+            "\12\53\7\uffff\32\53\4\uffff\1\53\1\uffff\32\53",
             "\1\164",
-            "\1\165",
+            "\12\53\7\uffff\32\53\4\uffff\1\53\1\uffff\32\53",
+            "\1\166",
             "",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "",
+            "\1\167",
             "\1\170",
+            "",
             "\1\171",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\1\172",
             "\1\173",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\1\174",
             "\1\175",
-            "",
-            "",
             "\1\176",
-            "\1\177",
+            "\12\53\7\uffff\32\53\4\uffff\1\53\1\uffff\32\53",
             "",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "\12\53\7\uffff\32\53\4\uffff\1\53\1\uffff\32\53",
             "",
             "\1\u0081",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\1\u0083",
-            "",
+            "\1\u0082",
+            "\12\53\7\uffff\32\53\4\uffff\1\53\1\uffff\32\53",
+            "\12\53\7\uffff\32\53\4\uffff\1\53\1\uffff\32\53",
             "\1\u0084",
+            "\12\53\7\uffff\32\53\4\uffff\1\53\1\uffff\32\53",
+            "\1\u0086",
+            "\1\u0087",
+            "\1\u0088",
             "",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
-            "\12\52\7\uffff\32\52\4\uffff\1\52\1\uffff\32\52",
+            "",
+            "\1\u0089",
+            "\1\u008a",
+            "",
+            "\12\53\7\uffff\32\53\4\uffff\1\53\1\uffff\32\53",
+            "",
+            "\1\u008c",
+            "\12\53\7\uffff\32\53\4\uffff\1\53\1\uffff\32\53",
+            "\12\53\7\uffff\32\53\4\uffff\1\53\1\uffff\32\53",
+            "\12\53\7\uffff\32\53\4\uffff\1\53\1\uffff\32\53",
+            "\1\u0090",
+            "",
+            "\1\u0091",
+            "",
+            "",
+            "",
+            "\12\53\7\uffff\32\53\4\uffff\1\53\1\uffff\32\53",
+            "\12\53\7\uffff\32\53\4\uffff\1\53\1\uffff\32\53",
             "",
             ""
     };
@@ -2217,7 +2288,7 @@ public class UbiscriptLexer extends Lexer {
             this.transition = DFA14_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | PLUS2 | MINUS2 | MINUS | PLUS | MULT | DIV | PERCENT | AND | OR | NOT | EQ | PLUSEQ | MINUSEQ | MULTEQ | DIVEQ | PERCENTEQ | EQ2 | NOTEQ | GT | LT | GTEQ | LTEQ | QUESTION | COMMA | NULL | BOOLEAN | ID | INTEGER | FLOAT | EXPONENT | STRING | ESC | LETTER | DIGIT | LINE_COMMENT | WS );";
+            return "1:1: Tokens : ( T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | T88 | T89 | T90 | T91 | PLUS2 | MINUS2 | MINUS | PLUS | MULT | DIV | PERCENT | AND | OR | NOT | EQ | PLUSEQ | MINUSEQ | MULTEQ | DIVEQ | PERCENTEQ | EQ2 | NOTEQ | GT | LT | GTEQ | LTEQ | QUESTION | COMMA | NULL | BOOLEAN | ID | INTEGER | FLOAT | EXPONENT | STRING | ESC | LETTER | DIGIT | LINE_COMMENT | WS );";
         }
     }
  

@@ -91,39 +91,39 @@ public class Env {
 	}
 	
 	public UbiObject newObject() {
-		UbiObject o = new UbiObject(rootScope.get(Constants.Id_Object, rootScope));
+		UbiObject o = new UbiObject(globalObject.get(Constants.Id_Object, globalObject));
 		return o;
 	}
 	
 	public UbiNumber newNumber(double value) {
-		UbiNumber o = new UbiNumber(rootScope.get(Constants.Id_Number, rootScope), value);
+		UbiNumber o = new UbiNumber(globalObject.get(Constants.Id_Number, globalObject), value);
 		return o;
 	}
 	
 	public UbiBoolean newBoolean(boolean value) {
-		UbiBoolean o = new UbiBoolean(rootScope.get(Constants.Id_Boolean, rootScope), value);
+		UbiBoolean o = new UbiBoolean(globalObject.get(Constants.Id_Boolean, globalObject), value);
 		return o;
 	}
 	
 	public UbiString newString(String value) {
-		UbiString o = new UbiString(rootScope.get(Constants.Id_String, rootScope), value);
+		UbiString o = new UbiString(globalObject.get(Constants.Id_String, globalObject), value);
 		return o;
 	}
 	
 	public UbiFunction newFunction(String[] parameters, Tree bodyTree, String bodyCode) throws UbiException {
-		UbiFunction o = new UbiFunction(rootScope.get(Constants.Id_Function, rootScope), parameters, bodyTree, bodyCode);
+		UbiFunction o = new UbiFunction(globalObject.get(Constants.Id_Function, globalObject), parameters, bodyTree, bodyCode);
 		Scriptable p = newObject();
 		o.put(Constants.Id_prototype, p, Property.DONTDELETE);
 		return o;
 	}
 	
 	public UbiArray newArray(int size, Scriptable[] values) {
-		UbiArray o = new UbiArray(rootScope.get(Constants.Id_Array, rootScope), size, values); 
+		UbiArray o = new UbiArray(globalObject.get(Constants.Id_Array, globalObject), size, values); 
 		return o;
 	}
 	
 	public UbiPlace newPlace(String location, String placeId) {
-		UbiPlace o = new UbiPlace(rootScope.get(Constants.Id_Place, rootScope), location, placeId);
+		UbiPlace o = new UbiPlace(globalObject.get(Constants.Id_Place, globalObject), location, placeId);
 		return o;
 	}
 	
@@ -149,8 +149,8 @@ public class Env {
 		return o;
 	}
 	
-	public ObjectProxy newObjectProxy(RemoteRef remoteRef) {
-		ObjectProxy o = new ObjectProxy(remoteRef, proxyDelegate);
+	public ObjectProxy newObjectProxy(String className, RemoteRef remoteRef) {
+		ObjectProxy o = new ObjectProxy(className, remoteRef, proxyDelegate);
 		return o;
 	}
 	

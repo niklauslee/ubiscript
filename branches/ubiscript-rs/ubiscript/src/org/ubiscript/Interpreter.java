@@ -20,20 +20,16 @@ public class Interpreter {
 		exportedObjects = new Hashtable<Long, Scriptable>();
 	}
 
-	public void execute(String code) throws UbiException {
-		evaluator.evaluateStatement(env, code);
-	}
-
-	public void put(String name, Scriptable obj) {
-		env.getRootScope().put(name, obj, Property.EMPTY);
-	}
-
-	public Scriptable get(String name, Scriptable start) {
-		return env.getRootScope().get(name, start);
-	}
-	
 	public Env getEnv() {
 		return env;
+	}
+
+	public Evaluator getEvaluator() {
+		return evaluator;
+	}
+	
+	public void execute(String code) throws UbiException {
+		evaluator.evaluateStatement(env, code);
 	}
 	
 	public long exportObject(Scriptable obj) {

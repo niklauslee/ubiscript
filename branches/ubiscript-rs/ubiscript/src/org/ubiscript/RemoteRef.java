@@ -3,12 +3,12 @@ package org.ubiscript;
 public class RemoteRef {
 
 	private String location;
-	private String interpreterId;
-	private String exportId;
+	private String placeId;
+	private long exportId;
 	
-	public RemoteRef(String location, String interpreterId, String exportId) {
+	public RemoteRef(String location, String placeId, long exportId) {
 		this.location = location;
-		this.interpreterId = interpreterId;
+		this.placeId = placeId;
 		this.exportId = exportId;
 	}
 	
@@ -16,11 +16,11 @@ public class RemoteRef {
 		return location;
 	}
 	
-	public String getInterpreterId() {
-		return interpreterId;
+	public String getPlaceId() {
+		return placeId;
 	}
 	
-	public String getExportId() {
+	public long getExportId() {
 		return exportId;
 	}
 	
