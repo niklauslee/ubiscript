@@ -28,6 +28,13 @@ public class Marshaller {
 			writer.write(UbiString.denormalizeString(s.getValue()));
 			writer.newLine();
 			writer.flush();
+		} else if (obj instanceof UbiPlace) {
+			UbiPlace p = (UbiPlace) obj;
+			writer.write(p.getLocation());
+			writer.newLine();
+			writer.write(p.getPlaceId());
+			writer.newLine();
+			writer.flush();
 		} else if (obj instanceof UbiNull) {
 			writer.write(obj.getClassName());
 			writer.newLine();
@@ -76,6 +83,10 @@ public class Marshaller {
 		} else if (token.equals(Constants.Id_String)) {
 			String s = UbiString.normalizeString(reader.readLine().trim());
 			return env.newString(s);
+		} else if (token.equals(Constants.Id_Place)) {
+			String location =  reader.readLine().trim();
+			String placeId = reader.readLine().trim();
+			return env.newPlace(location, placeId);
 		} else if (token.equals(Constants.Id_Null)) {
 			return env.getNull();
 		} else if (token.equals(Constants.Id_Undefined)) {
