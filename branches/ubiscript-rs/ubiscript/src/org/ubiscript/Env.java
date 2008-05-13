@@ -29,6 +29,7 @@ public class Env {
 		NativeArray.init(this);
 		NativePlace.init(this);
 		NativeJavaObject.init(this);
+		NativeJavaClass.init(this);
 		currentScope = rootScope;
 	}
 
