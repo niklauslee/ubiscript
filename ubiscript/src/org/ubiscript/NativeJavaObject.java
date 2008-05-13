@@ -187,6 +187,8 @@ public class NativeJavaObject extends NativeScriptable {
 	public static Scriptable JavaObjectToUbiObject(Env env, Object o) {
 		if (o == null) {
 			return env.getNull();
+		} else if (o instanceof Short) {
+			return env.newNumber(((Short) o).intValue());
 		} else if (o instanceof Integer) {
 			return env.newNumber(((Integer) o).intValue());
 		} else if (o instanceof Long) {

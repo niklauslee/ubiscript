@@ -14,6 +14,7 @@ public class Constants {
 			Id_Place = "Place",
 			Id_ObjectProxy = "ObjectProxy",
 			Id_JavaObject = "JavaObject",
+			Id_JavaClass = "JavaClass",
 			Id_prototype = "prototype",
 			Id_constructor = "constructor",
 			Id_global = "global",
