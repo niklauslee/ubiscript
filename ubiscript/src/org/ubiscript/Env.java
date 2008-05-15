@@ -2,7 +2,6 @@ package org.ubiscript;
 
 import org.antlr.runtime.tree.*;
 
-// TODO NativeJavaClass 구현하기
 // TODO NativeActiveXObject 구현하기
 // TODO NativeXMLObject 구현하기
 // TODO NativeWebObject 구현하기
