@@ -2,7 +2,7 @@
 
 == Web Service Install ==
 
-Install servlet/jsp container. we recommend jetty-6.1.3 or Tomcat 5.5/higher.
+Install servlet/jsp container. we recommend [http://jetty.mortbay.org/jetty-6/ jetty-6.1.3] or [http://tomcat.apache.org/ Tomcat 5.5/higher].
 
 _Note that you have to check "interact with desktop" property of the NT-service when you want to write GUI-enabled ubiscript programs._
 
