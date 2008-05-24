@@ -6,32 +6,32 @@ package org.ubiscript;
  */
 public class Interpreter {
 
-	private Environment env;
+	private Env env;
 	private Evaluator evaluator;
 
 	public Interpreter() {
 		evaluator = new Evaluator();
-		try {
-			env = new Environment();
-		} catch (UbiException e) {
-			e.printStackTrace();
-		}
+		env = new Env();
 	}
 
+	public Env getEnv() {
+		return env;
+	}
+
+	public Evaluator getEvaluator() {
+		return evaluator;
+	}
+	
 	public void execute(String code) throws UbiException {
 		evaluator.evaluateStatement(env, code);
 	}
-
-	public void put(String name, UbiObject obj) {
-		env.getRootScope().put(name, obj, Property.EMPTY);
-	}
-
-	public UbiObject get(String name) {
-		return env.getRootScope().get(name);
+	
+	public void setProxyDelegate(ProxyDelegate proxyDelegate) {
+		env.setProxyDelegate(proxyDelegate);
 	}
 	
-	public Environment getEnv() {
-		return env;
+	public ProxyDelegate getProxyDelegate() {
+		return env.getProxyDelegate();
 	}
 	
 	public void setEvaluatorDelegate(EvaluatorDelegate delegate) {

@@ -6,17 +6,17 @@ import java.lang.reflect.Method;
 import java.lang.reflect.InvocationTargetException;
 
 @SuppressWarnings("unchecked")
-public class NativeJavaObject extends NativeObject {
+public class NativeJavaObject extends NativeScriptable {
 
 	private Object javaObject;
 	
-	public NativeJavaObject(UbiObject prototype, Environment env, Object javaObject) {
+	public NativeJavaObject(Scriptable prototype, Env env, Object javaObject) {
 		super(prototype, env);
 		this.javaObject = javaObject;
 	}
 
-	public static void init(Environment env) {
-		UbiObject obj = new NativeJavaObject(null, env, null);
+	public static void init(Env env) {
+		Scriptable obj = new NativeJavaObject(null, env, null);
 		obj.put(Constants.Id_prototype, obj, Property.CONST);
 		obj.put(Constants.Id_constructor, obj, Property.CONST);
 		env.getRootScope().put(Constants.Id_JavaObject, obj, Property.EMPTY);
@@ -26,7 +26,7 @@ public class NativeJavaObject extends NativeObject {
 		return javaObject;
 	}
 
-	public UbiObject get(String name) {
+	public Scriptable get(String name, Scriptable start) {
 		// TODO Field 경우는 값을 직접 리턴, Method의 경우는 super를 호출
 		if (javaObject != null) {
 			Class c = javaObject.getClass();
@@ -36,14 +36,14 @@ public class NativeJavaObject extends NativeObject {
 			} catch (SecurityException e) {
 				e.printStackTrace();
 			} catch (NoSuchFieldException e) {
-				return new NativeObjectFunction(this, name);
+				return new NativeScriptableFunction(this, name);
 			} catch (IllegalArgumentException e) {
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {
 				e.printStackTrace();
 			}
 		}
-		return super.get(name);
+		return super.get(name, start);
 	}
 
 	public int getAttribute(String name) {
@@ -56,16 +56,11 @@ public class NativeJavaObject extends NativeObject {
 		return true;
 	}
 
-	public boolean canPut(String name) {
-		// TODO Field인 경우는 put 가능, Method은 경우에는 불가능.
-		return super.canPut(name);
-	}
-
 	public boolean delete(String name) {
 		return false;
 	}
 
-	public UbiObject construct(Environment env, Evaluator eval, UbiObject[] args) throws UbiException {
+	public Scriptable construct(Env env, Evaluator eval, Scriptable[] args) throws UbiException {
 		String className = null;
 		Object[] paramObjects = null;
 		Class[] paramTypes = null;
@@ -85,8 +80,9 @@ public class NativeJavaObject extends NativeObject {
 			Class javaClass = Class.forName(className);
 			Constructor ctor = findConstructor(javaClass, paramTypes); 
 			Object javaObject = ctor.newInstance(paramObjects);
+			Scriptable root = env.getRootScope();
 			ubiObject = new NativeJavaObject(
-					env.getRootScope().get(Constants.Id_JavaObject), env, javaObject);
+					root.get(Constants.Id_JavaObject, root), env, javaObject);
 		} catch(ClassNotFoundException e) {
 			UbiError.throwRuntimeError(
 					eval.getCurrentNode().getLine(), eval.getCurrentNode().getCharPositionInLine(),
@@ -115,7 +111,7 @@ public class NativeJavaObject extends NativeObject {
 		return ubiObject;
 	}
 
-	public UbiObject invoke(Environment env, Evaluator eval, String name, UbiObject[] args, UbiObject thisObject) throws UbiException {
+	public Scriptable invoke(Env env, Evaluator eval, String name, Scriptable[] args, Scriptable thisObject) throws UbiException {
 		Class clazz = javaObject.getClass();
 		Object[] paramObjects = new Object[0];
 		Class[] paramTypes = new Class[0];
@@ -145,7 +141,7 @@ public class NativeJavaObject extends NativeObject {
 		return env.getUndefined();
 	}
 	
-	public static Object UbiObjectToJavaObject(UbiObject o) {
+	public static Object UbiObjectToJavaObject(Scriptable o) {
 		if (o instanceof UbiNumber) {
 			UbiNumber n = (UbiNumber) o;
 			if (n.isInt()) {
@@ -168,7 +164,7 @@ public class NativeJavaObject extends NativeObject {
 		return null;
 	}
 	
-	public static Class UbiObjectToJavaType(UbiObject o) {
+	public static Class UbiObjectToJavaType(Scriptable o) {
 		if (o instanceof UbiNumber) {
 			if (((UbiNumber) o).isInt()) {
 				return Integer.TYPE;
@@ -188,9 +184,11 @@ public class NativeJavaObject extends NativeObject {
 		}
 	}
 	
-	public static UbiObject JavaObjectToUbiObject(Environment env, Object o) {
+	public static Scriptable JavaObjectToUbiObject(Env env, Object o) {
 		if (o == null) {
 			return env.getNull();
+		} else if (o instanceof Short) {
+			return env.newNumber(((Short) o).intValue());
 		} else if (o instanceof Integer) {
 			return env.newNumber(((Integer) o).intValue());
 		} else if (o instanceof Long) {
@@ -205,13 +203,14 @@ public class NativeJavaObject extends NativeObject {
 			return env.newString((String) o);
 		} else if (o instanceof Object[]) {
 			Object[] array = (Object[]) o;
-			UbiObject[] ubiArray = new UbiObject[array.length];
+			Scriptable[] ubiArray = new Scriptable[array.length];
 			for (int i = 0; i < array.length; i++) {
 				ubiArray[i] = JavaObjectToUbiObject(env, array[i]);
 			}
 			return env.newArray(ubiArray.length, ubiArray);
 		} else {
-			return new NativeJavaObject(env.getRootScope().get(Constants.Id_JavaObject), env, o);
+			Scriptable root = env.getRootScope();
+			return new NativeJavaObject(root.get(Constants.Id_JavaObject, root), env, o);
 		}
 	}
 	

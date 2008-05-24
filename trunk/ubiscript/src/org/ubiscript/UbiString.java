@@ -1,29 +1,22 @@
 package org.ubiscript;
 
-public class UbiString extends UbiObject {
+public class UbiString extends ScriptableObject {
+	
 	private String value;
-	public UbiString(UbiObject prototype, String value) {
+	
+	public UbiString(Scriptable prototype, String value) {
 		super(prototype);
 		this.value = value;
 	}
+	
 	public String getClassName() {
 		return Constants.Id_String;
 	}
+	
 	public String getValue() {
 		return value;
 	}
-	public boolean toBoolean() {
-		if (value.equals(""))
-			return false;
-		return true;
-	}
-	public double toNumber() {
-		try {
-			return Double.parseDouble(value);
-		} catch (NumberFormatException e) {
-			return 0.0d;
-		}
-	}
+		
 	public int toInt() {
 		try {
 			return Integer.parseInt(value);
@@ -31,9 +24,25 @@ public class UbiString extends UbiObject {
 			return 0;
 		}
 	}
+
+	public double toNumber() {
+		try {
+			return Double.parseDouble(value);
+		} catch (NumberFormatException e) {
+			return 0.0d;
+		}
+	}
+	
+	public boolean toBoolean() {
+		if (value.equals(""))
+			return false;
+		return true;
+	}
+
 	public String toString() {
 		return value;
 	}
+	
 	public boolean equals(Object obj) {
 		if (obj instanceof UbiString) {
 			UbiString s = (UbiString) obj;
@@ -41,6 +50,7 @@ public class UbiString extends UbiObject {
 		}
 		return false;
 	}
+	
 	public static String normalizeString(String s) {
 		s = s.substring(1, s.length()-1); // deleting enclosing double quote.
 		s = s.replaceAll("\\\\n", "\n");
@@ -52,6 +62,7 @@ public class UbiString extends UbiObject {
 		s = s.replaceAll("\\\\\\\\", "\\\\");
 		return s;
 	}
+	
 	public static String denormalizeString(String s) {
 		s = s.replaceAll("\\\\", "\\\\\\\\");
 		s = s.replaceAll("\"", "\\\"");

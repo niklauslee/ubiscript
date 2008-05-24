@@ -1,27 +1,28 @@
 package org.ubiscript;
 
 // TODO global의 기본 함수(e.g. parseInt, ...)들 구현하기. (다른 native object들도 마찬가지)
-public class NativeGlobal extends NativeObject {
+public class NativeGlobal extends NativeScriptable {
 	private static String
 			Id_println = "println";
 	
-	public NativeGlobal(UbiObject prototype, Environment env) {
+	public NativeGlobal(Scriptable prototype, Env env) {
 		super(prototype, env);
 		Ids.add(Id_println);
 	}
 
-	public static void init(Environment env) {
-		UbiObject obj = new NativeGlobal(null, env);
+	public static void init(Env env) {
+		Scriptable obj = new NativeGlobal(null, env);
 		env.setRootScope(obj);
+		env.setGlobalObject(obj);
 		env.getRootScope().put(Constants.Id_global, obj, Property.PREDEFINED);
 		env.getRootScope().put(Constants.Id_undefined, env.getUndefined(), Property.PREDEFINED);
 	}
 
-	public UbiObject construct(Environment env, Evaluator eval, UbiObject[] args) throws UbiException {
+	public Scriptable construct(Env env, Evaluator eval, Scriptable[] args) throws UbiException {
 		return env.getUndefined();
 	}
 
-	public UbiObject invoke(Environment env, Evaluator eval, String name, UbiObject[] args, UbiObject thisObject) throws UbiException {
+	public Scriptable invoke(Env env, Evaluator eval, String name, Scriptable[] args, Scriptable thisObject) throws UbiException {
 		if (name.equals(Id_println)) {
 			System.out.println(args[0].toString());
 		}
