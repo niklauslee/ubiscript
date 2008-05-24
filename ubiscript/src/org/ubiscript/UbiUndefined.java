@@ -1,6 +1,6 @@
 package org.ubiscript;
 
-public class UbiUndefined extends UbiObject {
+public class UbiUndefined extends ScriptableObject {
 
 	private static UbiUndefined instance = new UbiUndefined();
 	
@@ -19,18 +19,18 @@ public class UbiUndefined extends UbiObject {
 	public boolean equals(Object obj) {
 		return (obj instanceof UbiUndefined);
 	}
-	
-	public boolean toBoolean() {
-		return false;
+		
+	public int toInt() {
+		return 0;
 	}
 	
 	public double toNumber() {
 		// TODO NaN 처리하기. (아래 toInt()도 마찬가지)
 		return 0.0d;
 	}
-	
-	public int toInt() {
-		return 0;
+
+	public boolean toBoolean() {
+		return false;
 	}
 	
 	public String toString() {

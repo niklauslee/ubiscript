@@ -12,10 +12,13 @@ public class Constants {
 			Id_Function = "Function",
 			Id_Array = "Array",
 			Id_Place = "Place",
-			Id_NetRef = "NetRef",
+			Id_ObjectProxy = "ObjectProxy",
 			Id_JavaObject = "JavaObject",
+			Id_JavaClass = "JavaClass",
 			Id_prototype = "prototype",
 			Id_constructor = "constructor",
 			Id_global = "global",
-			Id_undefined = "undefined";
+			Id_null = "null",
+			Id_undefined = "undefined",
+			Id_this = "this";
 }
