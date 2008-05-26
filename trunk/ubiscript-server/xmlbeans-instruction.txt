@@ -1,0 +1,17 @@
+1. XMLBeans 설치
+---------------
+
+(1) http://xmlbeans.apache.org/ 에서 xmlbeans-2.3.0 다운로드
+(2) c:\xmlbeans-2.3.0 에 압축 풀기
+(3) 시스템 환경 변수에 아래 변수를 추가
+	- XMLBEANS_HOME = C:\xmlbeans-2.3.0
+	- CLASSPATH = .%XMLBEANS_HOME%\lib\xbean.jar;%XMLBEANS_HOME%\lib\jsr173_1.0_api.jar
+	- PATH = C:\Program Files\Java\jdk1.6.0_02\bin;..   ..;%XMLBEANS_HOME%\bin
+
+
+2. XMLBeans를 이용한 xsd 컴파일
+---------------------------
+
+.xsd 파일이 있는 경로에서 아래 커맨드를 수행한다.
+c:\...>scomp -out test.jar test.xsd
+
