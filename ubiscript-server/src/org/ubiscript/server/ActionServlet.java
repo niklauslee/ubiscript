@@ -8,11 +8,8 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.net.InetAddress;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.*;
+import javax.servlet.http.*;
 
 import org.ubiscript.*;
 
@@ -51,21 +48,21 @@ public class ActionServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String location = getCurrentLocation(req);
 		PlaceManager placeManager = getPlaceManager(location);
-		String action = req.getParameter(UbiscriptHttpClient.Param_action);
-		String placeId = req.getParameter(UbiscriptHttpClient.Param_placeId);
+		String action = req.getParameter(UbiscriptHttpClient.PARAM_ACTION);
+		String placeId = req.getParameter(UbiscriptHttpClient.PARAM_PLACEID);
 		if ((placeId == null) || (placeId.trim().equals("")))
 			placeId = java.util.UUID.randomUUID().toString();
 		Place place = placeManager.getPlace(placeId);
 		PrintWriter out = resp.getWriter();
 		if (action != null) {
-			if (action.equals(UbiscriptHttpClient.Action_execute)) {
-				String encodedScope = req.getParameter(UbiscriptHttpClient.Param_encodedScope);
-				String code = req.getParameter(UbiscriptHttpClient.Param_code);
+			if (action.equals(UbiscriptHttpClient.ACTION_EXECUTE)) {
+				String encodedScope = req.getParameter(UbiscriptHttpClient.PARAM_ENCODEDSCOPE);
+				String code = req.getParameter(UbiscriptHttpClient.PARAM_CODE);
 				String result = place.execute(encodedScope, code);
 				out.print(result);
-			} else if (action.equals(UbiscriptHttpClient.Action_getByName)) {
-				long exportId = Long.parseLong(req.getParameter(UbiscriptHttpClient.Param_exportId));
-				String name = req.getParameter(UbiscriptHttpClient.Param_name);
+			} else if (action.equals(UbiscriptHttpClient.ACTION_GETBYNAME)) {
+				long exportId = Long.parseLong(req.getParameter(UbiscriptHttpClient.PARAM_EXPORTID));
+				String name = req.getParameter(UbiscriptHttpClient.PARAM_NAME);
 				Scriptable base = place.getExportedObject(exportId);
 				Scriptable obj = base.get(name, base);
 				StringWriter sw = new StringWriter();
@@ -75,10 +72,10 @@ public class ActionServlet extends HttpServlet {
 				writer.close();
 				sw.close();
 				out.print(value);
-			} else if (action.equals(UbiscriptHttpClient.Action_putByName)) {
-				long exportId = Long.parseLong(req.getParameter(UbiscriptHttpClient.Param_exportId));
-				String name = req.getParameter(UbiscriptHttpClient.Param_name);
-				String value = req.getParameter(UbiscriptHttpClient.Param_value);
+			} else if (action.equals(UbiscriptHttpClient.ACTION_PUTBYNAME)) {
+				long exportId = Long.parseLong(req.getParameter(UbiscriptHttpClient.PARAM_EXPORTID));
+				String name = req.getParameter(UbiscriptHttpClient.PARAM_NAME);
+				String value = req.getParameter(UbiscriptHttpClient.PARAM_VALUE);
 				Scriptable base = place.getExportedObject(exportId);
 				StringReader sr = new StringReader(value);
 				BufferedReader reader = new BufferedReader(sr);
@@ -87,11 +84,11 @@ public class ActionServlet extends HttpServlet {
 				sr.close();
 				base.put(name, obj, Property.EMPTY);
 				out.println("PUT BY NAME - OK");
-			} else if (action.equals(UbiscriptHttpClient.Action_delete)) {
+			} else if (action.equals(UbiscriptHttpClient.ACTION_DELETE)) {
 				// ...
-			} else if (action.equals(UbiscriptHttpClient.Action_getByIndex)) {
-				long exportId = Long.parseLong(req.getParameter(UbiscriptHttpClient.Param_exportId));
-				int index = Integer.parseInt(req.getParameter(UbiscriptHttpClient.Param_index));
+			} else if (action.equals(UbiscriptHttpClient.ACTION_GETBYINDEX)) {
+				long exportId = Long.parseLong(req.getParameter(UbiscriptHttpClient.PARAM_EXPORTID));
+				int index = Integer.parseInt(req.getParameter(UbiscriptHttpClient.PARAM_INDEX));
 				Scriptable base = place.getExportedObject(exportId);
 				Scriptable obj = base.get(index);
 				StringWriter sw = new StringWriter();
@@ -101,10 +98,10 @@ public class ActionServlet extends HttpServlet {
 				writer.close();
 				sw.close();
 				out.print(value);
-			} else if (action.equals(UbiscriptHttpClient.Action_putByIndex)) {
-				long exportId = Long.parseLong(req.getParameter(UbiscriptHttpClient.Param_exportId));
-				int index = Integer.parseInt(req.getParameter(UbiscriptHttpClient.Param_index));
-				String value = req.getParameter(UbiscriptHttpClient.Param_value);
+			} else if (action.equals(UbiscriptHttpClient.ACTION_PUTBYINDEX)) {
+				long exportId = Long.parseLong(req.getParameter(UbiscriptHttpClient.PARAM_EXPORTID));
+				int index = Integer.parseInt(req.getParameter(UbiscriptHttpClient.PARAM_INDEX));
+				String value = req.getParameter(UbiscriptHttpClient.PARAM_VALUE);
 				Scriptable base = place.getExportedObject(exportId);
 				StringReader sr = new StringReader(value);
 				BufferedReader reader = new BufferedReader(sr);
@@ -113,11 +110,11 @@ public class ActionServlet extends HttpServlet {
 				sr.close();
 				base.put(index, obj);
 				out.println("PUT BY INDEX - OK");
-			} else if (action.equals(UbiscriptHttpClient.Action_call)) {
-				long exportId = Long.parseLong(req.getParameter(UbiscriptHttpClient.Param_exportId));
-				int argCount = Integer.parseInt(req.getParameter(UbiscriptHttpClient.Param_argCount));
-				String encodedArgs = req.getParameter(UbiscriptHttpClient.Param_args);
-				String encodedThisObj = req.getParameter(UbiscriptHttpClient.Param_thisObj);
+			} else if (action.equals(UbiscriptHttpClient.ACTION_CALL)) {
+				long exportId = Long.parseLong(req.getParameter(UbiscriptHttpClient.PARAM_EXPORTID));
+				int argCount = Integer.parseInt(req.getParameter(UbiscriptHttpClient.PARAM_ARGCOUNT));
+				String encodedArgs = req.getParameter(UbiscriptHttpClient.PARAM_ARGS);
+				String encodedThisObj = req.getParameter(UbiscriptHttpClient.PARAM_THISOBJ);
 				// decoding arguments
 				Scriptable[] args = new Scriptable[argCount];
 				if (encodedArgs != null) {
@@ -152,10 +149,10 @@ public class ActionServlet extends HttpServlet {
 					e.printStackTrace();
 					out.print(e.getLocalizedMessage());
 				}
-			} else if (action.equals(UbiscriptHttpClient.Action_construct)) {
-				long exportId = Long.parseLong(req.getParameter(UbiscriptHttpClient.Param_exportId));
-				int argCount = Integer.parseInt(req.getParameter(UbiscriptHttpClient.Param_argCount));
-				String encodedArgs = req.getParameter(UbiscriptHttpClient.Param_args);
+			} else if (action.equals(UbiscriptHttpClient.ACTION_CONSTRUCT)) {
+				long exportId = Long.parseLong(req.getParameter(UbiscriptHttpClient.PARAM_EXPORTID));
+				int argCount = Integer.parseInt(req.getParameter(UbiscriptHttpClient.PARAM_ARGCOUNT));
+				String encodedArgs = req.getParameter(UbiscriptHttpClient.PARAM_ARGS);
 				// decoding arguments
 				Scriptable[] args = new Scriptable[argCount];
 				if (encodedArgs != null) {
@@ -185,6 +182,17 @@ public class ActionServlet extends HttpServlet {
 			out.println("Action is not specified.");
 		}
 		out.close();
+	}
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		System.out.println("ServletPath=" + req.getServletPath());
+		System.out.println("ContextPath=" + req.getContextPath());
+		System.out.println("PathInfo=" + req.getPathInfo());
+		System.out.println("PathTranslated=" + req.getPathTranslated());
+		super.doGet(req, resp);
 	}
 
 }

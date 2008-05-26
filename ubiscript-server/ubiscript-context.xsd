@@ -1,0 +1,37 @@
+<!--
+	XML Schema for Ubiscript Context Configuration Version 1.0
+	written by Minkyu Lee (niklaus@icu.ac.kr)
+-->
+<xs:schema targetNamespace="http://ubiscript.org/config"
+	elementFormDefault="qualified"
+	xmlns:ubs="http://ubiscript.org/config"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="context" type="ubs:context" />
+	<xs:complexType name="context">
+		<xs:sequence>
+			<xs:element name="account" type="ubs:account" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="library" type="ubs:library" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="init" type="ubs:init" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="domain" type="ubs:domain" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="property" type="ubs:property" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="path" type="xs:string" />
+	</xs:complexType>
+	<xs:complexType name="account">
+		<xs:attribute name="username" type="xs:string" />
+		<xs:attribute name="password" type="xs:string" />
+	</xs:complexType>
+	<xs:complexType name="library">
+		<xs:attribute name="file" type="xs:string" />
+	</xs:complexType>
+	<xs:complexType name="init">
+		<xs:attribute name="class" type="xs:string" />
+	</xs:complexType>
+	<xs:complexType name="domain">
+		<xs:attribute name="pattern" type="xs:string" />
+	</xs:complexType>
+	<xs:complexType name="property">
+		<xs:attribute name="name" type="xs:string" />
+		<xs:attribute name="value" type="xs:string" />
+	</xs:complexType>
+</xs:schema>
