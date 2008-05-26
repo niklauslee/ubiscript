@@ -6,41 +6,18 @@ import java.io.IOException;
 import org.apache.commons.httpclient.*;
 import org.apache.commons.httpclient.methods.PostMethod;
 
-public class UbiscriptHttpClient {
+public class UbiscriptHttpClient implements Client {
 	
-	public static final String
-			Param_action = "action",
-			Param_placeId = "placeId",
-			Param_encodedScope = "encodedScope",
-			Param_code = "code",
-			Param_exportId = "exportId",
-			Param_name = "name",
-			Param_index = "index",
-			Param_value = "value",
-			Param_args = "args",
-			Param_argCount = "argCount",
-			Param_thisObj = "thisObj";
-	
-	public static final String
-			Action_execute = "execute",
-			Action_getByName = "getByName",
-			Action_putByName = "putByName",
-			Action_delete = "delete",
-			Action_getByIndex = "getByIndex",
-			Action_putByIndex = "putByIndex",
-			Action_call = "call",
-			Action_construct = "construct";
-
 	public UbiscriptHttpClient() {
 	}
 	
 	public String execute(UbiPlace place, String encodedScope, String code) {
 		HttpClient client = new HttpClient();
 		PostMethod post = new PostMethod(place.getLocation());
-		post.addParameter(Param_action, Action_execute);
-		post.addParameter(Param_placeId, place.getPlaceId());
-		post.addParameter(Param_encodedScope, encodedScope);
-		post.addParameter(Param_code, code);
+		post.addParameter(PARAM_ACTION, ACTION_EXECUTE);
+		post.addParameter(PARAM_PLACEID, place.getPlaceId());
+		post.addParameter(PARAM_ENCODEDSCOPE, encodedScope);
+		post.addParameter(PARAM_CODE, code);
 		try {
 			int statusCode = client.executeMethod(post);
 			if (statusCode != HttpStatus.SC_OK)
@@ -61,10 +38,10 @@ public class UbiscriptHttpClient {
 	public String get(RemoteRef remoteRef, String name) {
 		HttpClient client = new HttpClient();
 		PostMethod post = new PostMethod(remoteRef.getLocation());
-		post.addParameter(Param_action, Action_getByName);
-		post.addParameter(Param_placeId, remoteRef.getPlaceId());
-		post.addParameter(Param_exportId, Long.toString(remoteRef.getExportId()));
-		post.addParameter(Param_name, name);
+		post.addParameter(PARAM_ACTION, ACTION_GETBYNAME);
+		post.addParameter(PARAM_PLACEID, remoteRef.getPlaceId());
+		post.addParameter(PARAM_EXPORTID, Long.toString(remoteRef.getExportId()));
+		post.addParameter(PARAM_NAME, name);
 		try {
 			int statusCode = client.executeMethod(post);
 			if (statusCode != HttpStatus.SC_OK)
@@ -85,11 +62,11 @@ public class UbiscriptHttpClient {
 	public String put(RemoteRef remoteRef, String name, String encodedObject) {
 		HttpClient client = new HttpClient();
 		PostMethod post = new PostMethod(remoteRef.getLocation());
-		post.addParameter(Param_action, Action_putByName);
-		post.addParameter(Param_placeId, remoteRef.getPlaceId());
-		post.addParameter(Param_exportId, Long.toString(remoteRef.getExportId()));
-		post.addParameter(Param_name, name);
-		post.addParameter(Param_value, encodedObject);
+		post.addParameter(PARAM_ACTION, ACTION_PUTBYNAME);
+		post.addParameter(PARAM_PLACEID, remoteRef.getPlaceId());
+		post.addParameter(PARAM_EXPORTID, Long.toString(remoteRef.getExportId()));
+		post.addParameter(PARAM_NAME, name);
+		post.addParameter(PARAM_VALUE, encodedObject);
 		try {
 			int statusCode = client.executeMethod(post);
 			if (statusCode != HttpStatus.SC_OK)
@@ -114,10 +91,10 @@ public class UbiscriptHttpClient {
 	public String get(RemoteRef remoteRef, int index) {
 		HttpClient client = new HttpClient();
 		PostMethod post = new PostMethod(remoteRef.getLocation());
-		post.addParameter(Param_action, Action_getByIndex);
-		post.addParameter(Param_placeId, remoteRef.getPlaceId());
-		post.addParameter(Param_exportId, Long.toString(remoteRef.getExportId()));
-		post.addParameter(Param_index, Integer.toString(index));
+		post.addParameter(PARAM_ACTION, ACTION_GETBYINDEX);
+		post.addParameter(PARAM_PLACEID, remoteRef.getPlaceId());
+		post.addParameter(PARAM_EXPORTID, Long.toString(remoteRef.getExportId()));
+		post.addParameter(PARAM_INDEX, Integer.toString(index));
 		try {
 			int statusCode = client.executeMethod(post);
 			if (statusCode != HttpStatus.SC_OK)
@@ -138,11 +115,11 @@ public class UbiscriptHttpClient {
 	public String put(RemoteRef remoteRef, int index, String encodedObject) {
 		HttpClient client = new HttpClient();
 		PostMethod post = new PostMethod(remoteRef.getLocation());
-		post.addParameter(Param_action, Action_putByIndex);
-		post.addParameter(Param_placeId, remoteRef.getPlaceId());
-		post.addParameter(Param_exportId, Long.toString(remoteRef.getExportId()));
-		post.addParameter(Param_index, Integer.toString(index));
-		post.addParameter(Param_value, encodedObject);
+		post.addParameter(PARAM_ACTION, ACTION_PUTBYINDEX);
+		post.addParameter(PARAM_PLACEID, remoteRef.getPlaceId());
+		post.addParameter(PARAM_EXPORTID, Long.toString(remoteRef.getExportId()));
+		post.addParameter(PARAM_INDEX, Integer.toString(index));
+		post.addParameter(PARAM_VALUE, encodedObject);
 		try {
 			int statusCode = client.executeMethod(post);
 			if (statusCode != HttpStatus.SC_OK)
@@ -163,14 +140,14 @@ public class UbiscriptHttpClient {
 	public String call(RemoteRef remoteRef, int argCount, String encodedArgs, String encodedThisObj) {
 		HttpClient client = new HttpClient();
 		PostMethod post = new PostMethod(remoteRef.getLocation());
-		post.addParameter(Param_action, Action_call);
-		post.addParameter(Param_placeId, remoteRef.getPlaceId());
-		post.addParameter(Param_exportId, Long.toString(remoteRef.getExportId()));
-		post.addParameter(Param_argCount, Integer.toString(argCount));
+		post.addParameter(PARAM_ACTION, ACTION_CALL);
+		post.addParameter(PARAM_PLACEID, remoteRef.getPlaceId());
+		post.addParameter(PARAM_EXPORTID, Long.toString(remoteRef.getExportId()));
+		post.addParameter(PARAM_ARGCOUNT, Integer.toString(argCount));
 		if (encodedArgs != null)
-			post.addParameter(Param_args, encodedArgs);
+			post.addParameter(PARAM_ARGS, encodedArgs);
 		if (encodedThisObj != null)
-			post.addParameter(Param_thisObj, encodedThisObj);
+			post.addParameter(PARAM_THISOBJ, encodedThisObj);
 		try {
 			int statusCode = client.executeMethod(post);
 			if (statusCode != HttpStatus.SC_OK)
@@ -191,12 +168,12 @@ public class UbiscriptHttpClient {
 	public String construct(RemoteRef remoteRef, int argCount, String encodedArgs) {
 		HttpClient client = new HttpClient();
 		PostMethod post = new PostMethod(remoteRef.getLocation());
-		post.addParameter(Param_action, Action_construct);
-		post.addParameter(Param_placeId, remoteRef.getPlaceId());
-		post.addParameter(Param_exportId, Long.toString(remoteRef.getExportId()));
-		post.addParameter(Param_argCount, Integer.toString(argCount));
+		post.addParameter(PARAM_ACTION, ACTION_CONSTRUCT);
+		post.addParameter(PARAM_PLACEID, remoteRef.getPlaceId());
+		post.addParameter(PARAM_EXPORTID, Long.toString(remoteRef.getExportId()));
+		post.addParameter(PARAM_ARGCOUNT, Integer.toString(argCount));
 		if (encodedArgs != null)
-			post.addParameter(Param_args, encodedArgs);
+			post.addParameter(PARAM_ARGS, encodedArgs);
 		try {
 			int statusCode = client.executeMethod(post);
 			if (statusCode != HttpStatus.SC_OK)

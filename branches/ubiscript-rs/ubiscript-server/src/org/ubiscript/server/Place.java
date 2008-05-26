@@ -19,7 +19,7 @@ public class Place {
 	private String location;
 	private String placeId;
 	private Interpreter interpreter;
-	private UbiscriptHttpClient client;
+	private Client client;
 	private long exportCount;
 	private Hashtable<Long, Scriptable> exportedObjects;
 	
