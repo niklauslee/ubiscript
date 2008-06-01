@@ -22,8 +22,16 @@ public class Interpreter {
 		return evaluator;
 	}
 	
+	public Scriptable get(String name) {
+		return env.getCurrentScope().get(name, env.getCurrentScope());
+	}
+	
 	public void execute(String code) throws UbiException {
 		evaluator.evaluateStatement(env, code);
+	}
+	
+	public Scriptable evaluate(String code) throws UbiException {
+		return evaluator.evaluateExpression(env, code);
 	}
 	
 	public void setProxyDelegate(ProxyDelegate proxyDelegate) {
